@@ -3,6 +3,8 @@ import "./App.css";
 import EventCard from "./components/EventCard";
 import { Grid } from "@mui/material";
 import Banner from "./components/Banner";
+import {NextUIProvider} from "@nextui-org/react";
+
 const JsonData = [
   {
     name: "Karaoke Night",
@@ -50,16 +52,18 @@ const JsonData = [
 
 const App = () => {
   return (
+    <NextUIProvider>
     <div className="App">
       <header className="App-header">
         <Banner />
-        <Grid container spacing={3}>
+        <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-2 px-8">
           {JsonData.map((event) => (
             <EventCard event={event} />
           ))}
-        </Grid>
+        </div>
       </header>
     </div>
+    </NextUIProvider>
   );
 };
 
