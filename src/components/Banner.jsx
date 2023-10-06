@@ -11,12 +11,12 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+import PetsIcon from '@mui/icons-material/Pets';
 
 const pages = ["School Org", "Individual Events", "Catagories"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function Banner({handlePageSwitch}) {
+function Banner({setSelectedEventType}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -36,15 +36,15 @@ function Banner({handlePageSwitch}) {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ bgcolor: "#4E2A84" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <PetsIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -89,17 +89,17 @@ function Banner({handlePageSwitch}) {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Button variant="text" onClick={handlePageSwitch}>{page}</Button>
+                  <Button variant="text" onClick={() => setSelectedEventType(page)}>{page}</Button>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <PetsIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -111,13 +111,13 @@ function Banner({handlePageSwitch}) {
               textDecoration: "none",
             }}
           >
-            LOGO
+            Central
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => setSelectedEventType(page)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
@@ -128,7 +128,7 @@ function Banner({handlePageSwitch}) {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Demo User" src="https://picsum.photos/200" />
               </IconButton>
             </Tooltip>
             <Menu

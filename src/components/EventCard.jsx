@@ -10,7 +10,7 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -26,7 +26,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function EventCard({ event }) {
+const EventCard = ({ event }) => {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -34,7 +34,7 @@ export default function EventCard({ event }) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 350 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -51,13 +51,12 @@ export default function EventCard({ event }) {
       />
       <CardMedia
         component="img"
-        height="194"
         image={event.image}
-        alt="Placeholder for image"
+        alt="Image of event"
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          {event.organization}
+          Hosted by {event.organization}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -85,3 +84,5 @@ export default function EventCard({ event }) {
     </Card>
   );
 }
+
+export default EventCard;
