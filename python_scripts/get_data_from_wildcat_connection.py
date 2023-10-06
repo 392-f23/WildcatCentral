@@ -1,6 +1,7 @@
 import requests
 import time
 import json
+import os
 from datetime import datetime
 
 API_URL = "https://northwestern.campuslabs.com/engage/api/discovery/event/search"
@@ -38,6 +39,11 @@ def fetch_data():
     return results
 
 def save_to_json_file(data, filename="events.json"):
+    # make directory if not exists
+    if not os.path.exists("../src/data/"):
+        os.makedirs("../src/data/")
+    # save to ../src/data/
+    filename = "../src/data/" + filename
     # Load existing data if exists
     existing_data = []
     try:
@@ -55,6 +61,11 @@ def save_to_json_file(data, filename="events.json"):
             entry['addedOn'] = time.strftime("%Y-%m-%dT%H:%M:%S+00:00", time.gmtime())
             # add a field to indicate that this entry was added by this script
             entry['fromWildcatConnection'] = True
+            if entry['imagePath'] is None:
+                entry['image'] = "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
+            else:
+                # add image using imagePath
+                entry['image'] = "https://se-images.campuslabs.com/clink/images/" + entry['imagePath']
             existing_data.append(entry)
             added_count += 1
     

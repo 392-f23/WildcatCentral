@@ -47,7 +47,7 @@ const EventCard = ({ event }) => {
           </IconButton>
         }
         title={event.name}
-        subheader={event.date}
+        subheader={event.location}
       />
       <CardMedia
         component="img"
@@ -56,7 +56,14 @@ const EventCard = ({ event }) => {
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          Hosted by {event.organization}
+          Hosted by {event.organizationName}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          From:
+          {new Date(event.startsOn).toLocaleString()}
+          <br />
+          To:
+          {new Date(event.endsOn).toLocaleString()}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -78,7 +85,7 @@ const EventCard = ({ event }) => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>Description:</Typography>
-          <Typography paragraph>{event.description}</Typography>
+          <Typography paragraph><div dangerouslySetInnerHTML={{__html: event.description}} /></Typography>
         </CardContent>
       </Collapse>
     </Card>

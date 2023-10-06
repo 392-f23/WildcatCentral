@@ -31,9 +31,10 @@
             "latitude": "42.051570",
             "longitude": "-87.674910",
             "recScore": null,
-            "@search.score": 99.99167,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 99.9927,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://se-images.campuslabs.com/clink/images/e6ad4193-1b9d-4266-9715-121a64e26d21e1bfe766-f58e-42bf-a273-ae616ce1087b.png"
         },
         {
             "id": "9454734",
@@ -60,9 +61,10 @@
             "latitude": null,
             "longitude": null,
             "recScore": null,
-            "@search.score": 99.8057,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 99.80674,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
         },
         {
             "id": "9470340",
@@ -95,9 +97,10 @@
             "latitude": "42.049980",
             "longitude": "-87.677250",
             "recScore": null,
-            "@search.score": 99.79904,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 99.80009,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://se-images.campuslabs.com/clink/images/a8b8a0e2-811d-46d6-9eb6-aa1515049ef615459ef0-ced0-46f4-afbe-eaaedbd5b660.png"
         },
         {
             "id": "9495525",
@@ -132,9 +135,10 @@
             "latitude": "42.059460",
             "longitude": "-87.672680",
             "recScore": null,
-            "@search.score": 99.78129,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 99.782326,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://se-images.campuslabs.com/clink/images/78d7ae63-a78e-427f-9496-ef63d8414e33d275d2f5-1c3b-40bb-abdc-0afa6dbc5309.png"
         },
         {
             "id": "9454747",
@@ -161,9 +165,10 @@
             "latitude": null,
             "longitude": null,
             "recScore": null,
-            "@search.score": 99.67683,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 99.677864,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
         },
         {
             "id": "9265867",
@@ -199,8 +204,9 @@
             "longitude": null,
             "recScore": null,
             "@search.score": 1.0,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://se-images.campuslabs.com/clink/images/7eaa2536-b1ee-4c4f-a134-20e4f19e833abc96fe2f-06b4-4fe0-890c-ac8e7a1fba20.png"
         },
         {
             "id": "9495514",
@@ -227,9 +233,10 @@
             "latitude": "42.059460",
             "longitude": "-87.672680",
             "recScore": null,
-            "@search.score": 99.02885,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 99.02991,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://se-images.campuslabs.com/clink/images/dec8987d-a27e-4f88-b70c-7a11762daa2bbdce2c16-c1fc-43ae-80ab-3d6a6340f529.png"
         },
         {
             "id": "9454748",
@@ -256,9 +263,10 @@
             "latitude": null,
             "longitude": null,
             "recScore": null,
-            "@search.score": 98.92254,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 98.9236,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
         },
         {
             "id": "9455430",
@@ -295,9 +303,10 @@
             "latitude": "42.051030",
             "longitude": "-87.673880",
             "recScore": null,
-            "@search.score": 98.81596,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 98.81703,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://se-images.campuslabs.com/clink/images/f4b0800e-b268-4c88-84a3-307c8ea8bf5dc590394c-edba-42da-807d-3e6d94884b56.png"
         },
         {
             "id": "9454741",
@@ -324,9 +333,10 @@
             "latitude": null,
             "longitude": null,
             "recScore": null,
-            "@search.score": 98.811424,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 98.81249,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
         },
         {
             "id": "9454735",
@@ -353,9 +363,10 @@
             "latitude": null,
             "longitude": null,
             "recScore": null,
-            "@search.score": 98.2883,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 98.289375,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
         },
         {
             "id": "9266077",
@@ -390,9 +401,10 @@
             "latitude": null,
             "longitude": null,
             "recScore": null,
-            "@search.score": 98.95197,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 98.95303,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://se-images.campuslabs.com/clink/images/37a57dbf-1e5e-4584-bda8-8d196143d1e425c42e00-4479-42ed-940a-ce133e6a5102.png"
         },
         {
             "id": "9454749",
@@ -419,9 +431,10 @@
             "latitude": null,
             "longitude": null,
             "recScore": null,
-            "@search.score": 97.37307,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 97.37417,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
         },
         {
             "id": "9454742",
@@ -448,9 +461,10 @@
             "latitude": null,
             "longitude": null,
             "recScore": null,
-            "@search.score": 97.25787,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 97.25898,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
         },
         {
             "id": "9454736",
@@ -477,9 +491,10 @@
             "latitude": null,
             "longitude": null,
             "recScore": null,
-            "@search.score": 96.71061,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 96.71172,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
         },
         {
             "id": "9454750",
@@ -506,9 +521,10 @@
             "latitude": null,
             "longitude": null,
             "recScore": null,
-            "@search.score": 96.5721,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 96.57322,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
         },
         {
             "id": "9454751",
@@ -535,9 +551,10 @@
             "latitude": null,
             "longitude": null,
             "recScore": null,
-            "@search.score": 95.760796,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 95.76193,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
         },
         {
             "id": "9454743",
@@ -564,9 +581,10 @@
             "latitude": null,
             "longitude": null,
             "recScore": null,
-            "@search.score": 95.64119,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 95.642334,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
         },
         {
             "id": "9454737",
@@ -593,9 +611,10 @@
             "latitude": null,
             "longitude": null,
             "recScore": null,
-            "@search.score": 95.07777,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 95.078926,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
         },
         {
             "id": "9454752",
@@ -622,9 +641,10 @@
             "latitude": null,
             "longitude": null,
             "recScore": null,
-            "@search.score": 94.93388,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 94.93505,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
         },
         {
             "id": "9454753",
@@ -651,9 +671,10 @@
             "latitude": null,
             "longitude": null,
             "recScore": null,
-            "@search.score": 94.09076,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 94.09195,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
         },
         {
             "id": "9454744",
@@ -680,9 +701,10 @@
             "latitude": null,
             "longitude": null,
             "recScore": null,
-            "@search.score": 93.966415,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 93.967606,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
         },
         {
             "id": "9454738",
@@ -709,9 +731,10 @@
             "latitude": null,
             "longitude": null,
             "recScore": null,
-            "@search.score": 93.380455,
-            "addedOn": "2023-10-06T22:36:48+00:00",
-            "fromWildcatConnection": true
+            "@search.score": 93.38167,
+            "addedOn": "2023-10-06T22:50:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
         }
     ]
 }
