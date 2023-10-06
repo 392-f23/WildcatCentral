@@ -16,7 +16,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 const pages = ["School Org", "Individual Events", "Catagories"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function Banner() {
+function Banner({handlePageSwitch}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -89,7 +89,7 @@ function Banner() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Button variant="text" onClick={handlePageSwitch}>{page}</Button>
                 </MenuItem>
               ))}
             </Menu>
