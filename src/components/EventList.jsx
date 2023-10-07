@@ -1,6 +1,6 @@
 import EventCard from "./EventCard";
 
-const EventList = ({ events }) => {
+const EventList = ({ events, selectedCategory }) => {
   // Sanity check to make sure we're getting the right data
   if (!events) {
     return (

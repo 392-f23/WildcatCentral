@@ -16,11 +16,12 @@ import PetsIcon from '@mui/icons-material/Pets';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
+import EventsDisplay from './EventsDisplay';
 
 const pages = ["School Org", "Individual Events"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function Banner({ selectedEventType, setSelectedEventType }) {
+function Banner({ selectedEventType, setSelectedEventType, events, setSelectedCategory, selectedCategory }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -39,8 +40,13 @@ function Banner({ selectedEventType, setSelectedEventType }) {
     setAnchorElUser(null);
   };
 
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
   return (
     <AppBar position="static" sx={{ bgcolor: "#4E2A84" }}>
+
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <PetsIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -95,8 +101,16 @@ function Banner({ selectedEventType, setSelectedEventType }) {
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Button variant="text" onClick={() => setSelectedEventType(page)}>{page}</Button>
                 </MenuItem>
+
               ))}
+
+              <EventsDisplay 
+                events= {events}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+              />
             </Menu>
+
           </Box>
           <PetsIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
@@ -127,34 +141,8 @@ function Banner({ selectedEventType, setSelectedEventType }) {
                 {page}
               </Button>
             ))}
-            <FormControl fullWidth sx={{ m: 1, marginTop: '20px', marginLeft: '-10px' }}>
-              <InputLabel id="category-select-label" sx={{ color: '#fff', fontSize: '1.2rem' }}>Categories</InputLabel>
-              <Select
-                labelId="type-select-label"
-                id="type-select"
-                value={selectedEventType}
-                label="Categories"
-                onChange={setSelectedEventType}
-                sx={{
-                  color: '#fff',
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: '#fff',
-                  },
-                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                    borderColor: '#fff',
-                  },
-                  '&:hover': {
-                    borderColor: '#fff',
-                    backgroundColor: 'rgba(150, 111, 214, 0.25)',
-                  },
-                }}
-              >
-                <MenuItem value={"type1"}>Type 1</MenuItem>
-                <MenuItem value={"type2"}>Type 2</MenuItem>
-                <MenuItem value={"type3"}>Type 3</MenuItem>
-                </Select>
-            </FormControl>
           </Box>
+
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">

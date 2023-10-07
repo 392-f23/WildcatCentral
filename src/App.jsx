@@ -4,6 +4,7 @@ import EventList from "./components/EventList";
 import { NextUIProvider } from "@nextui-org/react";
 import Banner from "./components/Banner";
 import FetchedData from "./data/events.json";
+import EventsDisplay from "./components/EventsDisplay";
 
 const JsonData = {"School Org" : FetchedData["value"],
 "Individual Events" : [
@@ -59,13 +60,26 @@ const JsonData = {"School Org" : FetchedData["value"],
 
 const App = () => {
   const [selectedEventType, setSelectedEventType] = useState("School Org")
+  const [selectedCategory, setSelectedCategory] = useState('');
+  
   
   return (
     <NextUIProvider>
       <div className="App">
-        <Banner setSelectedEventType = { setSelectedEventType } selectedEventType = { selectedEventType }/>
 
-        <EventList events={JsonData[selectedEventType]} />
+      <Banner 
+          setSelectedEventType={setSelectedEventType} 
+          selectedEventType={selectedEventType} 
+          events={JsonData[selectedEventType]} 
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
+        <EventsDisplay 
+          events={JsonData[selectedEventType]} 
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
+
       </div>
     </NextUIProvider>
   );
