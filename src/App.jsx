@@ -58,13 +58,14 @@ const JsonData = {"School Org" : FetchedData["value"],
 
 
 const App = () => {
-  const [selectedEventTitle, setSelectedEventTitle] = useState("School Org")
+  const [selectedEventType, setSelectedEventType] = useState("School Org")
   
   return (
     <NextUIProvider>
       <div className="App">
-        <Banner setSelectedEventType={setSelectedEventTitle} />
-        <EventList events={JsonData[selectedEventTitle]} />
+        <Banner setSelectedEventType = { setSelectedEventType } selectedEventType = { selectedEventType }/>
+
+        <EventList events={JsonData[selectedEventType]} />
       </div>
     </NextUIProvider>
   );
