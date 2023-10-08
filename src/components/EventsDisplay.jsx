@@ -6,7 +6,7 @@ import Select from '@mui/material/Select';
 import MenuItem from "@mui/material/MenuItem";
 
 
-function EventsDisplay({ events }) {
+const EventsDisplay = ({ events }) => {
   const [uniqueCategories, setUniqueCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
 
@@ -16,9 +16,6 @@ function EventsDisplay({ events }) {
     const unique = [...new Set(allCategories)];
     setUniqueCategories(unique);
   }, [events]);
-
-  console.log(events);
-
 
   // Step 3: Filter Events
   const filteredEvents = events.filter(event =>
@@ -30,7 +27,7 @@ function EventsDisplay({ events }) {
   };
 
   return (
-    <div>
+    <>
       {/* Step 2: Populate Dropdown */}
       {/* <select
         value={selectedCategory}
@@ -44,40 +41,41 @@ function EventsDisplay({ events }) {
         ))}
       </select> */}
 
-
-      <FormControl fullWidth sx={{ m: 1, marginTop: '20px', marginLeft: '-10px' }}>
-              <InputLabel id="category-select-label" sx={{ color: '#fff', fontSize: '1.2rem' }}>Categories</InputLabel>
-              <Select
-                labelId="type-select-label"
-                id="type-select"
-                value={selectedCategory}
-                label="Categories"
-                onChange={handleCategoryChange}
-                sx={{
-                  color: '#fff',
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: '#fff',
-                  },
-                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                    borderColor: '#fff',
-                  },
-                  '&:hover': {
-                    borderColor: '#fff',
-                    backgroundColor: 'rgba(150, 111, 214, 0.25)',
-                  },
-                }}
-              >
-                <MenuItem value="">  </MenuItem>
-                {uniqueCategories.map(category => (
-                  <MenuItem key={category} value={category}>{category}</MenuItem>
-                ))}
-                </Select>
-            </FormControl>
+      <div className='w-full p-6'>
+        <FormControl fullWidth>
+          <InputLabel id="category-select-label" sx={{ color: '#fff', fontSize: '1.2rem' }}>Categories</InputLabel>
+          <Select
+            labelId="type-select-label"
+            id="type-select"
+            value={selectedCategory}
+            label="Categories"
+            onChange={handleCategoryChange}
+            sx={{
+              color: '#fff',
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderColor: '#fff',
+              },
+              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                borderColor: '#fff',
+              },
+              '&:hover': {
+                borderColor: '#fff',
+                backgroundColor: 'rgba(150, 111, 214, 0.25)',
+              },
+            }}
+          >
+            <MenuItem value="">  </MenuItem>
+            {uniqueCategories.map(category => (
+              <MenuItem key={category} value={category}>{category}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </div>
 
 
 
       {/* Render Filtered Events */}
-      <div className="events-grid">
+      <div className="events-grid gap-4 grid p-8 pt-0 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 w-full justify-center">
         {filteredEvents.map(event => (
           <div key={event.id} className="event-card">
             {/* Render event details */}
@@ -86,7 +84,7 @@ function EventsDisplay({ events }) {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }
 

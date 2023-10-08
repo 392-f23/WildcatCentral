@@ -13,15 +13,10 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import PetsIcon from '@mui/icons-material/Pets';
 
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
-import EventsDisplay from './EventsDisplay';
-
 const pages = ["School Org", "Individual Events"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function Banner({ selectedEventType, setSelectedEventType, events, setSelectedCategory, selectedCategory }) {
+function Banner({ setSelectedEventType }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -38,10 +33,6 @@ function Banner({ selectedEventType, setSelectedEventType, events, setSelectedCa
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-  };
-
-  const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
   };
 
   return (
@@ -103,12 +94,6 @@ function Banner({ selectedEventType, setSelectedEventType, events, setSelectedCa
                 </MenuItem>
 
               ))}
-
-              <EventsDisplay 
-                events= {events}
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-              />
             </Menu>
 
           </Box>
