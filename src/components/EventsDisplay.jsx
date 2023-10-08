@@ -41,41 +41,44 @@ const EventsDisplay = ({ events }) => {
         ))}
       </select> */}
 
-      <div className='w-full p-6'>
-        <FormControl fullWidth>
-          <InputLabel id="category-select-label" sx={{ color: '#fff', fontSize: '1.2rem' }}>Categories</InputLabel>
-          <Select
-            labelId="type-select-label"
-            id="type-select"
-            value={selectedCategory}
-            label="Categories"
-            onChange={handleCategoryChange}
-            sx={{
-              color: '#fff',
-              '& .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#fff',
-              },
-              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#fff',
-              },
-              '&:hover': {
-                borderColor: '#fff',
-                backgroundColor: 'rgba(150, 111, 214, 0.25)',
-              },
-            }}
-          >
-            <MenuItem value="">  </MenuItem>
-            {uniqueCategories.map(category => (
-              <MenuItem key={category} value={category}>{category}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </div>
-
-
+      {uniqueCategories.length > 1 && (
+        <div className='w-full p-6 pb-0'>
+          <FormControl fullWidth>
+            <InputLabel id="category-select-label" sx={{ color: '#fff', fontSize: '1.2rem' }}>Categories</InputLabel>
+            <Select
+              labelId="type-select-label"
+              id="type-select"
+              value={selectedCategory}
+              label="Categories"
+              onChange={handleCategoryChange}
+              sx={{
+                color: '#fff',
+                '& .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#fff',
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#fff',
+                },
+                '&:hover': {
+                  borderColor: '#fff',
+                },
+              }}
+            >
+              <MenuItem value="">
+                <em>All Categories</em>
+              </MenuItem>
+              {uniqueCategories.map(category => (
+                <MenuItem key={category} value={category}>
+                  {category}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+      )}
 
       {/* Render Filtered Events */}
-      <div className="events-grid gap-4 grid p-8 pt-0 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 w-full justify-center">
+      <div className="events-grid gap-4 grid p-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 w-full justify-center">
         {filteredEvents.map(event => (
           <div key={event.id} className="event-card">
             {/* Render event details */}
