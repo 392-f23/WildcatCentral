@@ -735,6 +735,36 @@
             "addedOn": "2023-10-06T22:50:51+00:00",
             "fromWildcatConnection": true,
             "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
+        },
+        {
+            "id": "9498096",
+            "institutionId": 7,
+            "organizationId": 299769,
+            "organizationIds": [],
+            "branchId": 19059,
+            "branchIds": [],
+            "organizationName": "Jazz Club",
+            "organizationProfilePicture": "f23197aa-0c3b-47d5-8f3a-a6e652c5b5440b4a02a3-b1c1-4b52-b617-aef472f6da08.jpg",
+            "organizationNames": [],
+            "name": "Jam Sesh",
+            "description": "<p>Come listen or play in our weekly Jam session, this week on Oct 14th 7-10pm in Wirtz Bergen room. Drum set provided. Please sign up through groupme, link posted below. Please reach out with any questions to my email: spencerbrown2024@u.northwestern.edu. Looking forward to jamming!</p>\r\n<p>Groupme Link:&nbsp;https://groupme.com/join_group/56614786/9AnXw5XJ</p>",
+            "location": "Wirtz bergen room",
+            "startsOn": "2023-10-15T00:00:00+00:00",
+            "endsOn": "2023-10-15T03:00:00+00:00",
+            "imagePath": "eb61e37e-8f73-4314-b98e-eaeb6cd50e59525e95d9-03fc-4959-8140-7995bfce35ea.png",
+            "theme": "Arts",
+            "categoryIds": [],
+            "categoryNames": [],
+            "benefitNames": [],
+            "visibility": "Public",
+            "status": "Approved",
+            "latitude": null,
+            "longitude": null,
+            "recScore": null,
+            "@search.score": 99.43867,
+            "addedOn": "2023-10-09T17:45:00+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://se-images.campuslabs.com/clink/images/eb61e37e-8f73-4314-b98e-eaeb6cd50e59525e95d9-03fc-4959-8140-7995bfce35ea.png"
         }
     ]
 }
