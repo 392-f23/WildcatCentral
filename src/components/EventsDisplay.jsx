@@ -11,6 +11,7 @@ const EventsDisplay = ({ events }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
+    setSelectedCategory('');
     // Step 1: Extract Unique Category Names
     const allCategories = events.flatMap(event => event.categoryNames);
     const unique = [...new Set(allCategories)];

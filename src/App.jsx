@@ -12,6 +12,7 @@ const JsonData = {
       name: "Learn to Crochet Meeting",
       id: "WC-1",
       organizationName: "Knitwestern",
+      categoryNames: ["Crafts"],
       startsOn: "2023-10-07T00:30:00+00:00",
       endsOn: "2023-10-07T03:30:00+00:00",
       location: "Harris Hall L28",
@@ -23,6 +24,7 @@ const JsonData = {
       name: "Learn to Knit Meeting",
       id: "WC-2",
       organizationName: "Knitwestern",
+      categoryNames: ["Crafts"],
       location: "Harris Hall 107",
       startsOn: "2023-11-07T00:30:00+00:00",
       endsOn: "2023-11-07T03:30:00+00:00",
@@ -34,6 +36,7 @@ const JsonData = {
       name: "Hindu YUVA GBM",
       id: "WC-3",
       organizationName: "Hindu YUVA",
+      categoryNames: ["Religion"],
       startsOn: "2023-12-07T00:30:00+00:00",
       endsOn: "2023-12-07T03:30:00+00:00",
       location: "Parkes Hall 122",
@@ -46,8 +49,9 @@ const JsonData = {
       name: "Karaoke Night",
       id: "WC-4",
       organizationName: "Platypus Affiliated Society",
-      "startsOn": "2024-5-07T00:30:00+00:00",
-      "endsOn": "2024-5-07T03:30:00+00:00",
+      categoryNames: ["Music"],
+      startsOn: "2024-5-07T00:30:00+00:00",
+      endsOn: "2024-5-07T03:30:00+00:00",
       location: "Kresge Hall 880 Campus Dr, Evanston, IL",
       description:
         "Fun karaoke with friends and free food this Friday night? What more could you ask for! Check in with us in Kresge 2319, and each group can sign up for a room on the Kresge 2nd floor to themselves for a certain time to sing whatever songs you want.",
@@ -60,7 +64,6 @@ const JsonData = {
 
 const App = () => {
   const [selectedEventType, setSelectedEventType] = useState("School Org")
-  const [selectedCategory, setSelectedCategory] = useState('');
 
   return (
     <NextUIProvider>
@@ -70,8 +73,6 @@ const App = () => {
         />
         <EventsDisplay
           events={JsonData[selectedEventType]}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
         />
       </div>
     </NextUIProvider>
