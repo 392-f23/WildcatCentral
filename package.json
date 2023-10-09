@@ -14,15 +14,18 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.12",
     "@mui/material": "^5.14.12",
+    "@mui/x-date-pickers": "^6.16.1",
     "@nextui-org/button": "^2.0.21",
     "@nextui-org/react": "^2.1.13",
     "@nextui-org/system": "^2.0.10",
     "@nextui-org/theme": "^2.1.9",
+    "dayjs": "^1.11.10",
     "framer-motion": "^10.16.4",
     "install": "^0.13.0",
     "npm": "^10.2.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "zustand": "^4.4.3"
   },
   "devDependencies": {
     "@testing-library/react": "^14.0.0",

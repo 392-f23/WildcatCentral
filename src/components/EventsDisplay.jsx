@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { useTheme } from '@mui/material/styles';
 import EventCard from './EventCard';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
-import MenuItem from "@mui/material/MenuItem";
+import { Select, SelectItem, Chip } from "@nextui-org/react";
 
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
 
 const EventsDisplay = ({ events }) => {
   const [uniqueCategories, setUniqueCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState([]);
 
   useEffect(() => {
-    setSelectedCategory('');
+    setSelectedCategory([]);
     // Step 1: Extract Unique Category Names
     const allCategories = events.flatMap(event => event.categoryNames);
     const unique = [...new Set(allCategories)];
@@ -19,13 +27,15 @@ const EventsDisplay = ({ events }) => {
   }, [events]);
 
   // Step 3: Filter Events
-  const filteredEvents = events.filter(event =>
-    selectedCategory ? event.categoryNames.includes(selectedCategory) : true
-  );
+  const filteredEvents = events.filter(event => {
+    if (selectedCategory.length === 0) {
+      return true;
+    } else {
+      return event.categoryNames.some(category => selectedCategory.includes(category));
+    }
+  });
 
-  const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
-  };
+  const theme = useTheme();
 
   return (
     <>
@@ -43,38 +53,39 @@ const EventsDisplay = ({ events }) => {
       </select> */}
 
       {uniqueCategories.length > 1 && (
-        <div className='w-full p-6 pb-0'>
-          <FormControl fullWidth>
-            <InputLabel id="category-select-label" sx={{ color: '#fff', fontSize: '1.2rem' }}>Categories</InputLabel>
-            <Select
-              labelId="type-select-label"
-              id="type-select"
-              value={selectedCategory}
-              label="Categories"
-              onChange={handleCategoryChange}
-              sx={{
-                color: '#fff',
-                '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#fff',
-                },
-                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#fff',
-                },
-                '&:hover': {
-                  borderColor: '#fff',
-                },
-              }}
-            >
-              <MenuItem value="">
-                <em>All Categories</em>
-              </MenuItem>
-              {uniqueCategories.map(category => (
-                <MenuItem key={category} value={category}>
-                  {category}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+        <div className='w-full p-6 pb-0 dark text-foreground'>
+          <Select
+            items={selectedCategory}
+            label="Categories"
+            variant="bordered"
+            isMultiline={true}
+            selectionMode="multiple"
+            placeholder="Select Categories"
+            labelPlacement="outside"
+            className='dark'
+            classNames={{
+              trigger: "min-h-unit-12 py-2",
+            }}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            renderValue={(items) => {
+              return (
+                <div className="flex flex-wrap gap-2 dark">
+                  {items.map((item) => (
+                    <Chip key={item.key}>{item.textValue}</Chip>
+                  ))}
+                </div>
+              );
+            }}
+          >
+            {uniqueCategories.map(category => (
+              <SelectItem
+                key={category}
+                textValue={category}
+              >
+                {category}
+              </SelectItem>
+            ))}
+          </Select>
         </div>
       )}
 

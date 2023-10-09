@@ -36,7 +36,7 @@ function Banner({ setSelectedEventType }) {
   };
 
   return (
-    <AppBar position="static" sx={{ bgcolor: "#4E2A84" }}>
+    <AppBar position="static">
 
       <Container maxWidth="xl">
         <Toolbar disableGutters>

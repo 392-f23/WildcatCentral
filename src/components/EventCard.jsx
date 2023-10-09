@@ -37,8 +37,9 @@ const EventCard = ({ event }) => {
     <Card sx={{ maxWidth: 350 }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+          <Avatar sx={{ bgcolor: red[500] }}
+            aria-label="recipe">
+            {event.organizationName[0]}
           </Avatar>
         }
         action={
@@ -85,7 +86,7 @@ const EventCard = ({ event }) => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>Description:</Typography>
-          <Typography paragraph><div dangerouslySetInnerHTML={{__html: event.description}} /></Typography>
+          <div dangerouslySetInnerHTML={{ __html: event.description }} />
         </CardContent>
       </Collapse>
     </Card>
