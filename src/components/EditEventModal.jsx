@@ -121,7 +121,7 @@ const EditEventModal = ({ selectedEventType }) => {
             >
                 <ModalContent>
                     <>
-                        <ModalHeader className="flex flex-col gap-1">Add an Event</ModalHeader>
+                        <ModalHeader className="flex flex-col gap-1">Add Event</ModalHeader>
                         <ModalBody>
                             <TextField
                                 autoFocus
