@@ -100,6 +100,7 @@ const App = () => {
           />
           <EditEventModal
             selectedEventType={selectedEventType}
+            user={user}
           />
           <footer className="w-full p-8">
           <p className="text-center text-default-500 text-sm">Northwestern University</p>

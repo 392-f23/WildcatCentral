@@ -27,7 +27,11 @@ const DEFAULT_EVENT = {
     categoryNames: [],
 };
 
-const EditEventModal = ({ selectedEventType }) => {
+const EditEventModal = ({ selectedEventType, user }) => {
+    if (!user) {
+        return <></>;
+    }
+
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const addEvent = useEventStore(state => state.addEvent);
     const catagories = useEventStore(state => state.catagories);
