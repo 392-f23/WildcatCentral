@@ -1,18 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useTheme } from '@mui/material/styles';
 import EventCard from './EventCard';
 import { Select, SelectItem, Chip } from "@nextui-org/react";
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
+import Masonry from '@mui/lab/Masonry';
 
 const EventsDisplay = ({ events }) => {
   const [uniqueCategories, setUniqueCategories] = useState([]);
@@ -34,8 +23,6 @@ const EventsDisplay = ({ events }) => {
       return event.categoryNames.some(category => selectedCategory.includes(category));
     }
   });
-
-  const theme = useTheme();
 
   return (
     <>
@@ -90,14 +77,16 @@ const EventsDisplay = ({ events }) => {
       )}
 
       {/* Render Filtered Events */}
-      <div className="events-grid gap-4 grid p-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 w-full justify-center">
+      <div className="events-grid flex justify-center w-full p-4">
+      <Masonry columns={{ xs: 1, sm: 3, md: 4, lg: 5, xl: 6 }} spacing={2}>
         {filteredEvents.map(event => (
-          <div key={event.id} className="event-card">
+          <div key={event.id} className="event-card flex justify-center">
             {/* Render event details */}
             <EventCard event={event} key={event.id} />
             {/* ...other event details */}
           </div>
         ))}
+      </Masonry>
       </div>
     </>
   );

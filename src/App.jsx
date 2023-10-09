@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import "./App.css";
 import { NextUIProvider } from "@nextui-org/react";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+
 import Banner from "./components/Banner";
 import FetchedData from "./data/events.json";
 import EventsDisplay from "./components/EventsDisplay";
 import EditEventModal from "./components/EditEventModal";
 import useEventStore from "./stores/eventStore";
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { useAuthState } from "./utilities/firebase";
 
 const JsonData = {
   "School Org": FetchedData["value"],
@@ -71,6 +73,8 @@ const App = () => {
   const setEvents = useEventStore((state) => state.setEvents);
   const eventsList = useEventStore((state) => state.events);
   const setCatagories = useEventStore((state) => state.setCatagories);
+  const [user] = useAuthState();
+
   // When the app loads, we want to fetch the data from the "API"
   React.useEffect(() => {
     const pulledData = JsonData;
@@ -89,6 +93,7 @@ const App = () => {
         <div className="App">
           <Banner
             setSelectedEventType={setSelectedEventType}
+            user={user}
           />
           <EventsDisplay
             events={eventsList[selectedEventType]}
@@ -96,6 +101,10 @@ const App = () => {
           <EditEventModal
             selectedEventType={selectedEventType}
           />
+          <footer className="w-full p-8">
+          <p className="text-center text-default-500 text-sm">Northwestern University</p>
+          <p className="text-center text-default-500 text-sm">© 2023 Wildcat Central</p>
+        </footer>
         </div>
       </NextUIProvider>
     </LocalizationProvider>

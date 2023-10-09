@@ -103,7 +103,7 @@ const EditEventModal = ({ selectedEventType }) => {
                     position: 'fixed',
                     bottom: 25,
                     right: 25,
-                    background: '#483D8B',
+                    background: '#6D28D9',
                     color: 'white', '&:hover': {
                         background: '#4E2A84',
                     }
@@ -199,10 +199,10 @@ const EditEventModal = ({ selectedEventType }) => {
                             />
                         </ModalBody>
                         <ModalFooter>
-                            <Button onClick={onClose} color="danger" variant="flat" className="rounded-none">
+                            <Button onClick={onClose} color="danger" variant="flat" className="rounded-md">
                                 Discard
                             </Button>
-                            <Button onClick={onSave} disabled={!allValid()} isDisabled={!allValid()} className="bg-[#483D8B] hover:bg-[#4E2A84] text-white font-bold py-2 px-4 rounded-none">
+                            <Button onClick={onSave} disabled={!allValid()} isDisabled={!allValid()} className="bg-[#4E2A84] hover:bg-[#4E2A84] text-white font-bold py-2 px-4 rounded-md">
                                 Submit
                             </Button>
                         </ModalFooter>
