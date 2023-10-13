@@ -82,7 +82,7 @@ const EventsDisplay = ({ events }) => {
         {filteredEvents.map(event => (
           <div key={event.id} className="event-card flex justify-center">
             {/* Render event details */}
-            <EventCard event={event} key={event.id} />
+            <EventCard event={event}/>
             {/* ...other event details */}
           </div>
         ))}
