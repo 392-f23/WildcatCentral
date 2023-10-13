@@ -19,29 +19,24 @@ const App = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    if (user) {
-      getDbData("/").then((data) => {
-        let pulledData = data['events'];
-        if (searchQuery) {
-          pulledData[selectedEventType] = pulledData[selectedEventType].filter(event =>
-            event.name.toLowerCase().includes(searchQuery.toLowerCase())
-          );
-        }
-        setEvents(pulledData);
-        const allCategories = data['events'][selectedEventType].flatMap(event => event.categoryNames);
-        const uniqueCats = [...new Set(allCategories)];
-        // remove undefined value from uniqueCats
-        uniqueCats.splice(uniqueCats.indexOf(undefined), 1);
-        setCategories(uniqueCats);
-      }).catch((error) => {
-        console.log(error);
-      });
-    }
-  }, [user, selectedEventType, searchQuery]);
+    getDbData("/events").then((data) => {
+      let pulledData = data;
+      if (searchQuery) {
+        pulledData[selectedEventType] = pulledData[selectedEventType].filter(event =>
+          event.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+      }
+      setEvents(pulledData);
+      const allCategories = data[selectedEventType].flatMap(event => event.categoryNames);
+      const uniqueCats = [...new Set(allCategories)];
+      // remove undefined value from uniqueCats
+      uniqueCats.splice(uniqueCats.indexOf(undefined), 1);
+      setCategories(uniqueCats);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }, [selectedEventType, searchQuery]);
 
-  if (!eventsList) {
-    return <div>Loading...</div>;
-  }
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <NextUIProvider>
@@ -51,7 +46,7 @@ const App = () => {
             setSearchQuery={setSearchQuery}
             user={user}
           />
-          {user && eventsList ? (
+          {eventsList ? (
             <>
               <EventsDisplay
                 events={eventsList[selectedEventType]}
@@ -63,13 +58,13 @@ const App = () => {
             </>
           ) : (
             <div className="text-center mt-8">
-              <p className="text-lg font-bold text-white">Please log in to view events</p>
+              <p className="text-lg font-bold text-white">Loading...Paws for a moment</p>
             </div>
           )}
           <footer className="w-full p-8">
-          <p className="text-center text-default-500 text-sm">Northwestern University</p>
-          <p className="text-center text-default-500 text-sm">© 2023 Wildcat Central</p>
-        </footer>
+            <p className="text-center text-default-500 text-sm">Northwestern University</p>
+            <p className="text-center text-default-500 text-sm">© 2023 Wildcat Central</p>
+          </footer>
         </div>
       </NextUIProvider>
     </LocalizationProvider>
