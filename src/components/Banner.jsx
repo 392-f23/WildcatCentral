@@ -114,7 +114,7 @@ function Banner({ user, setSelectedEventType, setSearchQuery }) {
 
           </Box>
           <PetsIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
+          {/* <Typography
             variant="h5"
             noWrap
             component="a"
@@ -131,7 +131,7 @@ function Banner({ user, setSelectedEventType, setSearchQuery }) {
             }}
           >
             Central
-          </Typography>
+          </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
@@ -145,12 +145,7 @@ function Banner({ user, setSelectedEventType, setSearchQuery }) {
           </Box>
           <SearchBar 
             handleSearch={handleSearch} 
-            sx={{ 
-              marginLeft: 2, // Move the search bar a bit to the left
-              '& input': { // Make the text color black
-                color: 'black'
-              } 
-            }} 
+            className="p-2"
           />
           {user ? (
             <Box sx={{ flexGrow: 0 }}>
