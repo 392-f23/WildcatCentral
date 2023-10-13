@@ -10,7 +10,7 @@ const useEventStore = create((set) => ({
         events[selectedEventType].push(event);
         return { events };
     }),
-    categories: null,
+    categories: [],
     // log the incoming categories arr
     setCategories: (categories) => set({ categories }),
     addcategory: (category) => set((state) => ({ categories: { ...state.categories, [category.id]: category } })),

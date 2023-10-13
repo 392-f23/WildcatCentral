@@ -33,10 +33,6 @@ const App = () => {
     }
   }, [user]);
 
-
-  if (!eventsList) {
-    return <div>Loading...</div>;
-  }
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <NextUIProvider>
@@ -45,13 +41,21 @@ const App = () => {
             setSelectedEventType={setSelectedEventType}
             user={user}
           />
-          <EventsDisplay
-            events={eventsList[selectedEventType]}
-          />
-          <EditEventModal
-            selectedEventType={selectedEventType}
-            user={user}
-          />
+          {user && eventsList ? (
+            <>
+              <EventsDisplay
+                events={eventsList[selectedEventType]}
+              />
+              <EditEventModal
+                selectedEventType={selectedEventType}
+                user={user}
+              />
+            </>
+          ) : (
+            <div className="text-center mt-8">
+              <p className="text-lg font-bold text-white">Please log in to view events</p>
+            </div>
+          )}
           <footer className="w-full p-8">
           <p className="text-center text-default-500 text-sm">Northwestern University</p>
           <p className="text-center text-default-500 text-sm">© 2023 Wildcat Central</p>
