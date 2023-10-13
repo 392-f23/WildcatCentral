@@ -1,25 +1,24 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Divider from '@mui/material/Divider';
+import Divider from "@mui/material/Divider";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemIcon from "@mui/material/ListItemIcon";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import PetsIcon from '@mui/icons-material/Pets';
-
-import { signInWithGoogle, signOut } from '../utilities/firebase';
-import { useProfile } from '../utilities/profile';
+import PetsIcon from "@mui/icons-material/Pets";
+import { signInWithGoogle, signOut } from "../utilities/firebase";
+import { useProfile } from "../utilities/profile";
 import { Logout } from "@mui/icons-material";
 
-const pages = ["School Org", "Individual Events"];
+const pages = ["School Org", "Individual Events", "Favourite Events"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Banner({ user, setSelectedEventType }) {
@@ -30,7 +29,7 @@ function Banner({ user, setSelectedEventType }) {
   const login = () => {
     signInWithGoogle();
     setAnchorElUser(null);
-  }
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -101,12 +100,18 @@ function Banner({ user, setSelectedEventType }) {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Button variant="text" onClick={() => setSelectedEventType(page)}>{page}</Button>
+                  <Button
+                    variant="text"
+                    onClick={() => setSelectedEventType(page)}
+                  >
+                    {page}
+                  </Button>
                 </MenuItem>
-
               ))}
+              {/* <MenuItem onClick={handleCloseNavMenu}>
+                <Button variant="text">Favourite Events</Button>
+              </MenuItem> */}
             </Menu>
-
           </Box>
           <PetsIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
@@ -137,6 +142,12 @@ function Banner({ user, setSelectedEventType }) {
                 {page}
               </Button>
             ))}
+            {/* <Button
+              onClick={toggleFavorite}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Favourite Events
+            </Button> */}
           </Box>
           {user ? (
             <Box sx={{ flexGrow: 0 }}>
@@ -163,7 +174,9 @@ function Banner({ user, setSelectedEventType }) {
               >
                 {profile?.isAdmin && (
                   <MenuItem key="nav-admin-text">
-                    <p className="font-semibold text-red-500">Welcome back, Admin</p>
+                    <p className="font-semibold text-red-500">
+                      Welcome back, Admin
+                    </p>
                   </MenuItem>
                 )}
                 <MenuItem key="nav-username" onClick={handleCloseUserMenu}>
@@ -184,7 +197,9 @@ function Banner({ user, setSelectedEventType }) {
               </Menu>
             </Box>
           ) : (
-            <Button color="contrast" variant="contained" onClick={login}>Login</Button>
+            <Button color="contrast" variant="contained" onClick={login}>
+              Login
+            </Button>
           )}
         </Toolbar>
       </Container>

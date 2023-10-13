@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 import { NextUIProvider } from "@nextui-org/react";
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 import Banner from "./components/Banner";
 import FetchedData from "./data/events.json";
@@ -10,6 +10,7 @@ import EventsDisplay from "./components/EventsDisplay";
 import EditEventModal from "./components/EditEventModal";
 import useEventStore from "./stores/eventStore";
 import { useAuthState } from "./utilities/firebase";
+import FavouriteEvent from "./components/FavouriteEvent";
 
 const JsonData = {
   "School Org": FetchedData["value"],
@@ -63,23 +64,35 @@ const JsonData = {
         "Fun karaoke with friends and free food this Friday night? What more could you ask for! Check in with us in Kresge 2319, and each group can sign up for a room on the Kresge 2nd floor to themselves for a certain time to sing whatever songs you want.",
       image:
         "https://se-images.campuslabs.com/clink/images/e6ad4193-1b9d-4266-9715-121a64e26d21e1bfe766-f58e-42bf-a273-ae616ce1087b.png",
-    }
+    },
   ],
 };
 
-
 const App = () => {
-  const [selectedEventType, setSelectedEventType] = useState("School Org")
+  const [selectedEventType, setSelectedEventType] = useState("School Org");
   const setEvents = useEventStore((state) => state.setEvents);
   const eventsList = useEventStore((state) => state.events);
   const setCatagories = useEventStore((state) => state.setCatagories);
   const [user] = useAuthState();
+  const [favoriteEvents, setFavoriteEvents] = useState([]); // Add state for favorite events
+  const [currentPage, setCurrentPage] = useState("School Org"); // Add state for current page
+
+  const toggleFavorite = (event) => {
+    // Function to toggle favorite events
+    if (favoriteEvents.includes(event)) {
+      setFavoriteEvents(favoriteEvents.filter((e) => e !== event));
+    } else {
+      setFavoriteEvents([...favoriteEvents, event]);
+    }
+  };
 
   // When the app loads, we want to fetch the data from the "API"
   React.useEffect(() => {
     const pulledData = JsonData;
     setEvents(pulledData);
-    const allCategories = pulledData[selectedEventType].flatMap(event => event.categoryNames);
+    const allCategories = pulledData[selectedEventType].flatMap(
+      (event) => event.categoryNames
+    );
     const uniqueCats = [...new Set(allCategories)];
     setCatagories(uniqueCats);
   }, [setEvents, setCatagories, selectedEventType]);
@@ -91,21 +104,29 @@ const App = () => {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <NextUIProvider>
         <div className="App">
-          <Banner
-            setSelectedEventType={setSelectedEventType}
-            user={user}
-          />
-          <EventsDisplay
-            events={eventsList[selectedEventType]}
-          />
-          <EditEventModal
-            selectedEventType={selectedEventType}
-            user={user}
-          />
+          <Banner setSelectedEventType={setCurrentPage} user={user} />{" "}
+          {currentPage !== "Favorited Events" ? (
+            <EventsDisplay
+              events={eventsList[currentPage]}
+              favoriteEvents={favoriteEvents}
+              toggleFavorite={toggleFavorite}
+            />
+          ) : (
+            <FavouriteEvent
+              favoriteEvents={favoriteEvents}
+              toggleFavorite={toggleFavorite}
+            />
+          )}
+          <EventsDisplay events={eventsList[selectedEventType]} />
+          <EditEventModal selectedEventType={selectedEventType} user={user} />
           <footer className="w-full p-8">
-          <p className="text-center text-default-500 text-sm">Northwestern University</p>
-          <p className="text-center text-default-500 text-sm">© 2023 Wildcat Central</p>
-        </footer>
+            <p className="text-center text-default-500 text-sm">
+              Northwestern University
+            </p>
+            <p className="text-center text-default-500 text-sm">
+              © 2023 Wildcat Central
+            </p>
+          </footer>
         </div>
       </NextUIProvider>
     </LocalizationProvider>
