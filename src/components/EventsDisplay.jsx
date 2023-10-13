@@ -3,7 +3,7 @@ import EventCard from './EventCard';
 import { Select, SelectItem, Chip } from "@nextui-org/react";
 import Masonry from '@mui/lab/Masonry';
 
-const EventsDisplay = ({ events }) => {
+const EventsDisplay = ({ events, searchQuery }) => {
   const [uniqueCategories, setUniqueCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState([]);
 
@@ -19,6 +19,15 @@ const EventsDisplay = ({ events }) => {
 
   // Step 3: Filter Events
   const filteredEvents = events.filter(event => {
+    // First filter by searchQuery in name and description if searchQuery is not empty
+    if (searchQuery.length > 0) {
+      const nameMatch = event.name.toLowerCase().includes(searchQuery.toLowerCase());
+      const descriptionMatch = event.description.toLowerCase().includes(searchQuery.toLowerCase());
+      if (!nameMatch && !descriptionMatch) {
+        return false;
+      }
+    }
+    // Second filter by selectedCategory
     if (selectedCategory.length === 0) {
       return true;
     } else {
@@ -32,19 +41,6 @@ const EventsDisplay = ({ events }) => {
 
   return (
     <>
-      {/* Step 2: Populate Dropdown */}
-      {/* <select
-        value={selectedCategory}
-        onChange={e => setSelectedCategory(e.target.value)}
-      >
-        <option value="">All Categories</option>
-        {uniqueCategories.map(category => (
-          <option key={category} value={category}>
-            {category}
-          </option>
-        ))}
-      </select> */}
-
       {uniqueCategories.length > 1 && (
         <div className='w-full p-6 pb-0 dark text-foreground'>
           <Select

@@ -38,7 +38,9 @@ const EventCard = ({ event }) => {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }}
-            aria-label="recipe">
+            aria-label="recipe"
+            src={event.organizationProfilePicture}
+            >
             {event.organizationName[0]}
           </Avatar>
         }

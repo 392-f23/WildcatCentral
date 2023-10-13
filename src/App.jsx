@@ -21,11 +21,6 @@ const App = () => {
   useEffect(() => {
     getDbData("/events").then((data) => {
       let pulledData = data;
-      if (searchQuery) {
-        pulledData[selectedEventType] = pulledData[selectedEventType].filter(event =>
-          event.name.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-      }
       setEvents(pulledData);
       const allCategories = data[selectedEventType].flatMap(event => event.categoryNames);
       const uniqueCats = [...new Set(allCategories)];
@@ -50,6 +45,7 @@ const App = () => {
             <>
               <EventsDisplay
                 events={eventsList[selectedEventType]}
+                searchQuery={searchQuery}
               />
               <EditEventModal
                 selectedEventType={selectedEventType}
