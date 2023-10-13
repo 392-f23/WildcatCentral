@@ -34,7 +34,7 @@ const EditEventModal = ({ selectedEventType, user }) => {
 
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const addEvent = useEventStore(state => state.addEvent);
-    const catagories = useEventStore(state => state.catagories);
+    const categories = useEventStore(state => state.categories);
 
     const [newEvent, setNewEvent] = React.useState(DEFAULT_EVENT);
 
@@ -157,16 +157,16 @@ const EditEventModal = ({ selectedEventType, user }) => {
                                 helperText={isLocationValid(newEvent.location) ? "" : "Please enter a valid location."}
                             />
                             <FormControl>
-                                <InputLabel>Catagories</InputLabel>
+                                <InputLabel>categories</InputLabel>
                                 <Select
                                     multiple
                                     value={newEvent.categoryNames}
                                     onChange={event => setNewEvent({ ...newEvent, categoryNames: event.target.value })}
-                                    input={<OutlinedInput label="Catagories" />}
+                                    input={<OutlinedInput label="categories" />}
                                     renderValue={(selected) => selected.join(', ')}
                                     MenuProps={MenuProps}
                                 >
-                                    {catagories.map((cat) => (
+                                    {categories.map((cat) => (
                                         <MenuItem key={cat} value={cat}>
                                             <Checkbox checked={newEvent.categoryNames.indexOf(cat) > -1} />
                                             <ListItemText primary={cat} />

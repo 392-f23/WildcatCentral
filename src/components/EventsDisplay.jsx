@@ -3,17 +3,11 @@ import EventCard from './EventCard';
 import { Select, SelectItem, Chip } from "@nextui-org/react";
 import Masonry from '@mui/lab/Masonry';
 
-const EventsDisplay = ({ events }) => {
-  const [uniqueCategories, setUniqueCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState([]);
+import useEventStore from '../stores/eventStore';
 
-  useEffect(() => {
-    setSelectedCategory([]);
-    // Step 1: Extract Unique Category Names
-    const allCategories = events.flatMap(event => event.categoryNames);
-    const unique = [...new Set(allCategories)];
-    setUniqueCategories(unique);
-  }, [events]);
+const EventsDisplay = ({ events }) => {
+  const uniqueCategories = useEventStore((state) => state.categories);
+  const [selectedCategory, setSelectedCategory] = useState([]);
 
   // Step 3: Filter Events
   const filteredEvents = events.filter(event => {
@@ -66,7 +60,7 @@ const EventsDisplay = ({ events }) => {
           >
             {uniqueCategories.map(category => (
               <SelectItem
-                key={category}
+                key={`category-${category}`}
                 textValue={category}
               >
                 {category}

@@ -15,16 +15,18 @@ const App = () => {
   const [selectedEventType, setSelectedEventType] = useState("School Org")
   const setEvents = useEventStore((state) => state.setEvents);
   const eventsList = useEventStore((state) => state.events);
-  const setCatagories = useEventStore((state) => state.setCatagories);
+  const setCategories = useEventStore((state) => state.setCategories);
   const [user] = useAuthState();
 
   useEffect(() => {
     if (user) {
       getDbData("/").then((data) => {
         setEvents(data['events']);
-        const allCategories = pulledData[selectedEventType].flatMap(event => event.categoryNames);
+        const allCategories = data['events'][selectedEventType].flatMap(event => event.categoryNames);
         const uniqueCats = [...new Set(allCategories)];
-        setCatagories(uniqueCats);
+        // remove undefined value from uniqueCats
+        uniqueCats.splice(uniqueCats.indexOf(undefined), 1);
+        setCategories(uniqueCats);
       }).catch((error) => {
         console.log(error);
       });

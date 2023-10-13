@@ -66,6 +66,15 @@ def save_to_json_file(data, filename="events.json"):
             else:
                 # add image using imagePath
                 entry['image'] = "https://se-images.campuslabs.com/clink/images/" + entry['imagePath']
+            if entry['organizationProfilePicture'] is not None:
+                # add organizationProfilePicture using organizationProfilePicture
+                entry['organizationProfilePicture'] = "https://se-images.campuslabs.com/clink/images/" + entry['organizationProfilePicture']
+            # replace @search.score with searchScore
+            entry['searchScore'] = entry.pop('@search.score')
+            # make sure categoryNames exists, if not add an empty list
+            if 'categoryNames' not in entry:
+                entry['categoryNames'] = []
+            
             existing_data.append(entry)
             added_count += 1
     

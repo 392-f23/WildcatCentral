@@ -6,16 +6,14 @@ const useEventStore = create((set) => ({
     // shoud put under events = {selectedEventType:{value:[]}}
     // just extend the array
     addEvent: (selectedEventType, event) => set((state) => {
-        console.log("addEvent", event, selectedEventType)
         let events = { ...state.events };
-        console.log("events", events)
-        console.log(Object.keys(events))
         events[selectedEventType].push(event);
         return { events };
     }),
-    catagories: [],
-    setCatagories: (catagories) => set({ catagories }),
-    addCatagory: (catagory) => set((state) => ({ catagories: { ...state.catagories, [catagory.id]: catagory } })),
+    categories: null,
+    // log the incoming categories arr
+    setCategories: (categories) => set({ categories }),
+    addcategory: (category) => set((state) => ({ categories: { ...state.categories, [category.id]: category } })),
 }));
 
 export default useEventStore;
