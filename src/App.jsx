@@ -10,6 +10,7 @@ import EventsDisplay from "./components/EventsDisplay";
 import EditEventModal from "./components/EditEventModal";
 import useEventStore from "./stores/eventStore";
 import { useAuthState } from "./utilities/firebase";
+import SearchBar from "./components/SearchBar";
 
 const JsonData = {
   "School Org": FetchedData["value"],
@@ -68,12 +69,14 @@ const JsonData = {
 };
 
 
+
 const App = () => {
   const [selectedEventType, setSelectedEventType] = useState("School Org")
   const setEvents = useEventStore((state) => state.setEvents);
   const eventsList = useEventStore((state) => state.events);
   const setCatagories = useEventStore((state) => state.setCatagories);
   const [user] = useAuthState();
+  const [searchQuery, setSearchQuery] = useState("");
 
   // When the app loads, we want to fetch the data from the "API"
   React.useEffect(() => {
@@ -84,6 +87,21 @@ const App = () => {
     setCatagories(uniqueCats);
   }, [setEvents, setCatagories, selectedEventType]);
 
+  React.useEffect(() => {
+    let pulledData = JsonData;
+
+    if (searchQuery) {
+      pulledData[selectedEventType] = pulledData[selectedEventType].filter(event =>
+        event.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    setEvents(pulledData);
+    const allCategories = pulledData[selectedEventType].flatMap(event => event.categoryNames);
+    const uniqueCats = [...new Set(allCategories)];
+    setCatagories(uniqueCats);
+  }, [setEvents, setCatagories, selectedEventType, searchQuery]);
+
   if (!eventsList) {
     return <div>Loading...</div>;
   }
@@ -93,6 +111,7 @@ const App = () => {
         <div className="App">
           <Banner
             setSelectedEventType={setSelectedEventType}
+            setSearchQuery={setSearchQuery}
             user={user}
           />
           <EventsDisplay
