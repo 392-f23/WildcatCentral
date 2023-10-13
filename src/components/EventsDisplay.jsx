@@ -19,25 +19,22 @@ const EventsDisplay = ({ events, searchQuery }) => {
 
   // Step 3: Filter Events
   const filteredEvents = events.filter(event => {
-    // First filter by searchQuery in name and description if searchQuery is not empty
-    if (searchQuery.length > 0) {
-      const nameMatch = event.name.toLowerCase().includes(searchQuery.toLowerCase());
-      const descriptionMatch = event.description.toLowerCase().includes(searchQuery.toLowerCase());
-      if (!nameMatch && !descriptionMatch) {
-        return false;
-      }
-    }
-    // Second filter by selectedCategory
-    if (selectedCategory.length === 0) {
-      return true;
-    } else {
-      if (event.categoryNames === undefined) {
-        return false;
-      } else {
-        return event.categoryNames.some(category => selectedCategory.includes(category));
-      }
-    }
+    // Filter by searchQuery in name, description, organizationName, and category names
+    const nameMatch = event.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const descriptionMatch = event.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const organizationMatch = event.organizationName.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    // Check if event belongs to selectedCategory
+    const categoryMatch = selectedCategory.length === 0 || (
+      event.categoryNames &&
+      event.categoryNames.some(category => selectedCategory.includes(category))
+    );
+  
+    // Return true if any of the conditions match
+    return (nameMatch || descriptionMatch || organizationMatch) && categoryMatch;
   });
+  
+  
 
   return (
     <>
