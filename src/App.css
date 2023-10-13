@@ -7,3 +7,29 @@
   background-color: #282c34;
   min-height: 100vh;
 }
+
+/* Existing styles */
+#banner {
+  display: flex;
+  align-items: center;
+  background-color: blue;
+  color: white;
+  padding: 1em;
+}
+
+.button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  background-color: green;
+  color: white;
+  cursor: pointer;
+}
+
+/* Add or modify these styles */
+#search-box {
+  margin-left: auto; /* Push to the far right */
+  background: white; /* Or any color of your choice */
+  color: black; /* Text color */
+  border: 1px solid #ccc;
+  padding: 5px;
+}

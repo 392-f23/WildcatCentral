@@ -14,6 +14,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import PetsIcon from '@mui/icons-material/Pets';
+import SearchBar from "./SearchBar";
 
 import { signInWithGoogle, signOut } from '../utilities/firebase';
 import { useProfile } from '../utilities/profile';
@@ -22,7 +23,7 @@ import { Logout } from "@mui/icons-material";
 const pages = ["School Org", "Individual Events"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function Banner({ user, setSelectedEventType }) {
+function Banner({ user, setSelectedEventType, setSearchQuery }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [profile, profileLoading, profileError] = useProfile();
@@ -45,6 +46,10 @@ function Banner({ user, setSelectedEventType }) {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+  
+  const handleSearch = (query) => {
+    setSearchQuery(query);
   };
 
   return (
@@ -138,6 +143,15 @@ function Banner({ user, setSelectedEventType }) {
               </Button>
             ))}
           </Box>
+          <SearchBar 
+            handleSearch={handleSearch} 
+            sx={{ 
+              marginLeft: 2, // Move the search bar a bit to the left
+              '& input': { // Make the text color black
+                color: 'black'
+              } 
+            }} 
+          />
           {user ? (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
@@ -191,4 +205,5 @@ function Banner({ user, setSelectedEventType }) {
     </AppBar>
   );
 }
+
 export default Banner;
