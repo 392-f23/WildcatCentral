@@ -1,6 +1,5 @@
 import React from "react";
 
-import AddIcon from '@mui/icons-material/Add';
 import { FormControl, Checkbox, ListItemText, Fab, TextField, Select, OutlinedInput, MenuItem, InputLabel } from '@mui/material';
 import { Divider, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from "@nextui-org/react";
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
@@ -95,122 +94,103 @@ const EditEventModal = ({ isOpen, onOpen, onOpenChange }) => {
     }
 
     return (
-        <>
-            {/* <div className={isOpen ? "hidden" : ""}>
-                <Fab color="primary"
-                    aria-label="add"
-                    onClick={onOpen}
-                    sx={{
-                        position: 'fixed',
-                        bottom: { xs: 25, sm: 50 },
-                        right: { xs: 25, sm: 50 },
-                        background: '#6D28D9',
-                        color: 'white', '&:hover': {
-                            background: '#4E2A84',
-                        }
-                    }}
-                >
-                    <AddIcon />
-                </Fab>
-            </div> */}
-            <Modal
-                isOpen={isOpen}
-                onOpenChange={onOpenChange}
-                size="md"
-                scrollBehavior="inside"
-                isDismissable={false}
-            >
-                <ModalContent>
-                    <>
-                        <ModalHeader className="flex flex-col gap-1">Add Event</ModalHeader>
-                        <ModalBody>
-                            <TextField
-                                autoFocus
-                                label="Name of Your Event"
-                                variant="outlined"
-                                value={newEvent.name}
-                                onChange={event => setNewEvent({ ...newEvent, name: event.target.value })}
-                                required
-                                error={!isNameValid(newEvent.name)}
-                                helperText={isNameValid(newEvent.name) ? "" : "Please enter a valid name."}
-                            />
-                            <TextField
-                                label="Description"
-                                variant="outlined"
-                                value={newEvent.description}
-                                onChange={event => setNewEvent({ ...newEvent, description: event.target.value })}
-                                required
-                                multiline
-                                error={!isDescriptionValid(newEvent.description)}
-                                helperText={isDescriptionValid(newEvent.description) ? "" : "Please enter a valid description."}
-                            />
-                            <TextField
-                                label="Location"
-                                variant="outlined"
-                                value={newEvent.location}
-                                onChange={event => setNewEvent({ ...newEvent, location: event.target.value })}
-                                required
-                                error={!isLocationValid(newEvent.location)}
-                                helperText={isLocationValid(newEvent.location) ? "" : "Please enter a valid location."}
-                            />
-                            <FormControl>
-                                <InputLabel>categories</InputLabel>
-                                <Select
-                                    multiple
-                                    value={newEvent.categoryNames}
-                                    onChange={event => setNewEvent({ ...newEvent, categoryNames: event.target.value })}
-                                    input={<OutlinedInput label="categories" />}
-                                    renderValue={(selected) => selected.join(', ')}
-                                    MenuProps={MenuProps}
-                                >
-                                    {categories.map((cat) => (
-                                        <MenuItem key={cat} value={cat}>
-                                            <Checkbox checked={newEvent.categoryNames.indexOf(cat) > -1} />
-                                            <ListItemText primary={cat} />
-                                        </MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl>
-                            <Divider />
+        <Modal
+            isOpen={isOpen}
+            onOpenChange={onOpenChange}
+            size="md"
+            scrollBehavior="inside"
+            isDismissable={false}
+        >
+            <ModalContent>
+                <>
+                    <ModalHeader className="flex flex-col gap-1">Add Event</ModalHeader>
+                    <ModalBody>
+                        <TextField
+                            autoFocus
+                            label="Name of Your Event"
+                            variant="outlined"
+                            value={newEvent.name}
+                            onChange={event => setNewEvent({ ...newEvent, name: event.target.value })}
+                            required
+                            error={!isNameValid(newEvent.name)}
+                            helperText={isNameValid(newEvent.name) ? "" : "Please enter a valid name."}
+                        />
+                        <TextField
+                            label="Description"
+                            variant="outlined"
+                            value={newEvent.description}
+                            onChange={event => setNewEvent({ ...newEvent, description: event.target.value })}
+                            required
+                            multiline
+                            error={!isDescriptionValid(newEvent.description)}
+                            helperText={isDescriptionValid(newEvent.description) ? "" : "Please enter a valid description."}
+                        />
+                        <TextField
+                            label="Location"
+                            variant="outlined"
+                            value={newEvent.location}
+                            onChange={event => setNewEvent({ ...newEvent, location: event.target.value })}
+                            required
+                            error={!isLocationValid(newEvent.location)}
+                            helperText={isLocationValid(newEvent.location) ? "" : "Please enter a valid location."}
+                        />
+                        <FormControl>
+                            <InputLabel>categories</InputLabel>
+                            <Select
+                                multiple
+                                value={newEvent.categoryNames}
+                                onChange={event => setNewEvent({ ...newEvent, categoryNames: event.target.value })}
+                                input={<OutlinedInput label="categories" />}
+                                renderValue={(selected) => selected.join(', ')}
+                                MenuProps={MenuProps}
+                            >
+                                {categories.map((cat) => (
+                                    <MenuItem key={cat} value={cat}>
+                                        <Checkbox checked={newEvent.categoryNames.indexOf(cat) > -1} />
+                                        <ListItemText primary={cat} />
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                        <Divider />
+                        <DateTimePicker
+                            disablePast
+                            label="Starts On"
+                            value={newEvent.startsOn}
+                            onChange={date => setNewEvent({ ...newEvent, startsOn: date })}
+                            required
+                        />
+                        {// show the second picker after first date is selected
+                            newEvent.startsOn &&
                             <DateTimePicker
-                                disablePast
-                                label="Starts On"
-                                value={newEvent.startsOn}
-                                onChange={date => setNewEvent({ ...newEvent, startsOn: date })}
+                                minDate={newEvent.startsOn}
+                                label="Ends On"
+                                value={newEvent.endsOn}
+                                onChange={date => setNewEvent({ ...newEvent, endsOn: date })}
                                 required
                             />
-                            {// show the second picker after first date is selected
-                                newEvent.startsOn &&
-                                <DateTimePicker
-                                    minDate={newEvent.startsOn}
-                                    label="Ends On"
-                                    value={newEvent.endsOn}
-                                    onChange={date => setNewEvent({ ...newEvent, endsOn: date })}
-                                    required
-                                />
-                            }
-                            <Divider />
-                            <TextField
-                                label="Image URL"
-                                variant="outlined"
-                                value={newEvent.image}
-                                onChange={event => setNewEvent({ ...newEvent, image: event.target.value })}
-                                error={!isImageURLValid(newEvent.image)}
-                                helperText={isImageURLValid(newEvent.image) ? "" : "Please enter a valid image URL."}
-                            />
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button onClick={onClose} color="danger" variant="flat" className="rounded-md">
-                                Discard
-                            </Button>
-                            <Button onClick={onSave} disabled={!allValid()} isDisabled={!allValid()} className="bg-[#4E2A84] hover:bg-[#4E2A84] text-white font-bold py-2 px-4 rounded-md">
-                                Submit
-                            </Button>
-                        </ModalFooter>
-                    </>
-                </ModalContent>
-            </Modal>
-        </>
+                        }
+                        <Divider />
+                        <TextField
+                            label="Image URL"
+                            variant="outlined"
+                            value={newEvent.image}
+                            onChange={event => setNewEvent({ ...newEvent, image: event.target.value })}
+                            error={!isImageURLValid(newEvent.image)}
+                            helperText={isImageURLValid(newEvent.image) ? "" : "Please enter a valid image URL."}
+                        />
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button onClick={onClose} color="danger" variant="flat" className="rounded-md">
+                            Discard
+                        </Button>
+                        <Button onClick={onSave} disabled={!allValid()} isDisabled={!allValid()} className="bg-[#4E2A84] hover:bg-[#4E2A84] text-white font-bold py-2 px-4 rounded-md">
+                            Submit
+                        </Button>
+                    </ModalFooter>
+                </>
+            </ModalContent>
+        </Modal>
     );
 }
 

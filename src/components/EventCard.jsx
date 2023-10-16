@@ -15,6 +15,10 @@ import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import useEventStore from "../stores/eventStore";
+import { Button } from "@mui/material";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import MapModal from "./MapModal";
+import { useDisclosure } from "@nextui-org/react";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -28,6 +32,7 @@ const ExpandMore = styled((props) => {
 }));
 
 const EventCard = ({ event, isFavorite, toggleFavorite }) => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const user = useEventStore((state) => state.user);
   const [expanded, setExpanded] = React.useState(false);
 
@@ -37,12 +42,13 @@ const EventCard = ({ event, isFavorite, toggleFavorite }) => {
 
   return (
     <Card sx={{ maxWidth: 350 }}>
+      <MapModal isOpen={isOpen} onOpenChange={onOpenChange} latitude={event.latitude} longitude={event.longitude} locationName={event.location} />
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }}
             aria-label="recipe"
             src={event.organizationProfilePicture}
-            >
+          >
             {event.organizationName[0]}
           </Avatar>
         }
@@ -52,7 +58,13 @@ const EventCard = ({ event, isFavorite, toggleFavorite }) => {
           </IconButton>
         }
         title={event.name}
-        subheader={event.location}
+        subheader={<Button
+          variant="text"
+          size="small"
+          className="m-0 p-0 justify-start text-left"
+          startIcon={<LocationOnIcon />}
+          onClick={onOpen}
+        >{event.location}</Button>}
       />
       <CardMedia component="img" image={event.image} alt="Image of event" />
       <CardContent>
