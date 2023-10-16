@@ -21,7 +21,6 @@ import { useProfile } from '../utilities/profile';
 import { Logout } from "@mui/icons-material";
 
 const pages = ["School Org", "Individual Events", "Favourite Events"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Banner({ user, setSelectedEventType, setSearchQuery }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -33,23 +32,12 @@ function Banner({ user, setSelectedEventType, setSearchQuery }) {
     setAnchorElUser(null);
   };
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-  };
-  
-  const handleSearch = (query) => {
-    setSearchQuery(query);
   };
 
   return (
@@ -81,7 +69,7 @@ function Banner({ user, setSelectedEventType, setSearchQuery }) {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={(event) => setAnchorElNav(event.currentTarget)}
               color="inherit"
             >
               <MenuIcon />
@@ -109,16 +97,12 @@ function Banner({ user, setSelectedEventType, setSearchQuery }) {
                   <Button
                     variant="text"
                     onClick={() => {
-                      console.log("setting page to ", page)
                       setSelectedEventType(page)}}
                   >
                     {page}
                   </Button>
                 </MenuItem>
               ))}
-              {/* <MenuItem onClick={handleCloseNavMenu}>
-                <Button variant="text">Favourite Events</Button>
-              </MenuItem> */}
             </Menu>
           </Box>
           <PetsIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
@@ -145,28 +129,23 @@ function Banner({ user, setSelectedEventType, setSearchQuery }) {
               <Button
                 key={page}
                 onClick={() => {
-                  console.log("setting page to ", page)
                   setSelectedEventType(page)}}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
               </Button>
             ))}
-            {/* <Button
-              onClick={toggleFavorite}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              Favourite Events
-            </Button> */}
           </Box>
           <SearchBar 
-            handleSearch={handleSearch} 
+            handleSearch={setSearchQuery} 
             className="p-2"
           />
           {user ? (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <IconButton
+                  onClick={(event) => setAnchorElUser(event.currentTarget)}
+                  sx={{ p: 0 }}>
                   <Avatar alt={user.displayName} src={user.photoURL} />
                 </IconButton>
               </Tooltip>

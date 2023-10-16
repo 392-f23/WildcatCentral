@@ -783,6 +783,79 @@
             "fromWildcatConnection": true,
             "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg",
             "searchScore": 94.14057
+        },
+        {
+            "id": "9523782",
+            "institutionId": 7,
+            "organizationId": 96303,
+            "organizationIds": [],
+            "branchId": 19059,
+            "branchIds": [],
+            "organizationName": "Active Minds",
+            "organizationProfilePicture": "https://se-images.campuslabs.com/clink/images/16e462ab-762a-4f72-84fd-fea6b096736e8306609d-619c-421a-8642-5713242d699e.jpg",
+            "organizationNames": [],
+            "name": "Active Minds Stress Less Week - Yoga Night!",
+            "description": "<p>Join Active Minds for some mindful beginner's yoga, led by one of our own friends/community members! Mats will be provided, and we'll also have some stress-relieving free giveaways. Anyone within the Northwestern community is welcome, whether you've been to one of our events before or not, some stop by and bring your friends! Be on the lookout for more events under our Stress Less Week initiative, including our general member meeting on Tuesday, Oct. 24 and library tabling on Wednesday, Oct. 25!</p>",
+            "location": "Parkes Hall Room 122",
+            "startsOn": "2023-10-24T00:30:00+00:00",
+            "endsOn": "2023-10-24T01:30:00+00:00",
+            "imagePath": "b290cefc-f12a-495c-84c2-09a4df3d8506f3e11d30-21b8-4a7e-8b3f-655f72fc9b54.png",
+            "theme": "Social",
+            "categoryIds": [
+                "3349"
+            ],
+            "categoryNames": [
+                "Social Event"
+            ],
+            "benefitNames": [
+                "Free Stuff"
+            ],
+            "visibility": "Public",
+            "status": "Approved",
+            "latitude": "42.050680",
+            "longitude": "-87.677100",
+            "recScore": null,
+            "addedOn": "2023-10-16T15:14:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://se-images.campuslabs.com/clink/images/b290cefc-f12a-495c-84c2-09a4df3d8506f3e11d30-21b8-4a7e-8b3f-655f72fc9b54.png",
+            "searchScore": 99.2098
+        },
+        {
+            "id": "9523689",
+            "institutionId": 7,
+            "organizationId": 96303,
+            "organizationIds": [],
+            "branchId": 19059,
+            "branchIds": [],
+            "organizationName": "Active Minds",
+            "organizationProfilePicture": "https://se-images.campuslabs.com/clink/images/16e462ab-762a-4f72-84fd-fea6b096736e8306609d-619c-421a-8642-5713242d699e.jpg",
+            "organizationNames": [],
+            "name": "Active Minds Stress Less Week - Library Fun!",
+            "description": "<p>Take a break for some self-care and connection and join Active Minds for our quarterly Stress Less giveaway event! We'll be at the front entrance of Main near the Info Commons with snacks, stress toys, quick crafts, free raffle prizes, and take-one-leave-one affirmations. Anyone within the Northwestern community is welcome to stop by! Also, be sure to check out the other events under our Stress Less Week initiative, including our yoga night on Monday, Oct. 23 and our general member meeting on Tuesday, Oct. 24!</p>",
+            "location": "Northwestern Main Library",
+            "startsOn": "2023-10-25T22:00:00+00:00",
+            "endsOn": "2023-10-26T01:00:00+00:00",
+            "imagePath": "fef63bcf-3a72-42fc-8749-a8dd77a30bf9088e2cfa-5d63-4dc5-aad4-7182590e475d.png",
+            "theme": "Social",
+            "categoryIds": [
+                "3349"
+            ],
+            "categoryNames": [
+                "Social Event"
+            ],
+            "benefitNames": [
+                "Free Food",
+                "Free Stuff"
+            ],
+            "visibility": "Public",
+            "status": "Approved",
+            "latitude": "42.053130",
+            "longitude": "-87.674080",
+            "recScore": null,
+            "addedOn": "2023-10-16T15:14:51+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://se-images.campuslabs.com/clink/images/fef63bcf-3a72-42fc-8749-a8dd77a30bf9088e2cfa-5d63-4dc5-aad4-7182590e475d.png",
+            "searchScore": 99.0046
         }
     ]
 }

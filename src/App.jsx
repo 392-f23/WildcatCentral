@@ -8,10 +8,7 @@ import Banner from "./components/Banner";
 import EventsDisplay from "./components/EventsDisplay";
 import EditEventModal from "./components/EditEventModal";
 import useEventStore from "./stores/eventStore";
-import { writeToDb, useAuthState, getDbData, useDbData } from "./utilities/firebase";
-import { onValue, ref, getDatabase } from 'firebase/database';
-import FavouriteEvent from "./components/FavouriteEvent";
-import database from "./utilities/firebase";
+import { writeToDb, useAuthState, getDbData } from "./utilities/firebase";
 
 const App = () => {
   const [selectedEventType, setSelectedEventType] = useState("School Org");
@@ -21,20 +18,14 @@ const App = () => {
   const [user] = useAuthState();
   const [searchQuery, setSearchQuery] = useState("");
   const [favoriteEvents, setFavoriteEvents] = useState([]); // Add state for favorite events
-  //const [currentPage, setCurrentPage] = useState("School Org"); // Add state for current page
-
-  const handleSelectedEventTypeChange = (newEventType) => {
-    console.log("Changing selected event type to:", newEventType);
-    setSelectedEventType(newEventType);
-  };
 
   const toggleFavorite = async (event) => {
     if (!user) return;
-  
+
     const userId = user.uid;
     const path = `/favorites/${userId}`;
     let currentFavorites = favoriteEvents.map(e => e.id);
-  
+
     if (currentFavorites.includes(event.id)) {
       currentFavorites = currentFavorites.filter((e) => e !== event.id);
       setFavoriteEvents(favoriteEvents.filter((e) => e.id !== event.id));
@@ -42,54 +33,44 @@ const App = () => {
       currentFavorites.push(event.id);
       setFavoriteEvents([...favoriteEvents, event]);
     }
-  
-    await writeToDb(path, {favorites: currentFavorites});
+
+    await writeToDb(path, { favorites: currentFavorites });
   };
-  
-  useEffect(() => {
-    const fetchFavorites = async () => {
-      if (user) {
-        const userId = user.uid;
-        const path = `/favorites/${userId}/favorites`;
-        try {
-          const data = await getDbData(path);
-          console.log("Fetched favorites:", data);
-  
-          if (data) {
-            const eventIDs = Object.values(data);
-            console.log("Event IDs:", eventIDs);
-  
-            const allEvents = Object.values(eventsList).flat();
-            
-            const newFavoriteEvents = allEvents.filter(event => eventIDs.includes(event.id.toString()));
-            
-            setFavoriteEvents(newFavoriteEvents);
-          } else {
-            setFavoriteEvents([]);
-          }
-        } catch (error) {
-          console.log("Error fetching favorites:", error);
+
+  const fetchFavorites = async () => {
+    if (user) {
+      const userId = user.uid;
+      const path = `/favorites/${userId}/favorites`;
+      try {
+        const data = await getDbData(path);
+        if (data) {
+          const eventIDs = Object.values(data);
+          const allEvents = Object.values(eventsList).flat();
+          const newFavoriteEvents = allEvents.filter(event => eventIDs.includes(event.id.toString()));
+          setFavoriteEvents(newFavoriteEvents);
+        } else {
+          setFavoriteEvents([]);
         }
-      } else {
-        setFavoriteEvents([]);
+      } catch (error) {
+        console.log("Error fetching favorites:", error);
       }
-    };
-  
+    } else {
+      setFavoriteEvents([]);
+    }
+  };
+
+  useEffect(() => {
     fetchFavorites();
-  }, [user, eventsList]);
-  
+  }, [user]);
+
   useEffect(() => {
     if (selectedEventType !== "Favorited Events") {
       // Fetch data and set categories when not on the "Favorite Events" page
       getDbData("/events").then((data) => {
         let pulledData = data;
         setEvents(pulledData);
-  
         const selectedEventData = data[selectedEventType];
         const allCategories = selectedEventData?.flatMap(event => event.categoryNames) || [];
-  
-        console.log("cats:", allCategories);
-  
         const uniqueCats = [...new Set(allCategories)];
         // remove undefined value from uniqueCats
         uniqueCats.splice(uniqueCats.indexOf(undefined), 1);
@@ -98,7 +79,7 @@ const App = () => {
         console.log(error);
       });
     }
-  }, [selectedEventType, searchQuery]);
+  }, [selectedEventType]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -106,7 +87,7 @@ const App = () => {
         <div className="App">
           <Banner
             user={user}
-            setSelectedEventType={handleSelectedEventTypeChange}
+            setSelectedEventType={setSelectedEventType}
             setSearchQuery={setSearchQuery}
           />
 
@@ -134,9 +115,9 @@ const App = () => {
 
 
           <footer className="w-full p-8">
-          <p className="text-center text-default-500 text-sm">Northwestern University</p>
-          <p className="text-center text-default-500 text-sm">© 2023 Wildcat Central</p>
-        </footer>
+            <p className="text-center text-default-500 text-sm">Northwestern University</p>
+            <p className="text-center text-default-500 text-sm">© 2023 Wildcat Central</p>
+          </footer>
         </div>
       </NextUIProvider>
     </LocalizationProvider>

@@ -100,22 +100,23 @@ const EditEventModal = ({ selectedEventType, user }) => {
 
     return (
         <>
-            <Fab color="primary"
-                aria-label="add"
-                onClick={onOpen}
-                sx={{
-                    position: 'fixed',
-                    bottom: 25,
-                    right: 25,
-                    background: '#6D28D9',
-                    color: 'white', '&:hover': {
-                        background: '#4E2A84',
-                    }
-                }}
-                disabled={isOpen}
-            >
-                <AddIcon />
-            </Fab>
+            <div className={isOpen ? "hidden" : ""}>
+                <Fab color="primary"
+                    aria-label="add"
+                    onClick={onOpen}
+                    sx={{
+                        position: 'fixed',
+                        bottom: { xs: 25, sm: 50 },
+                        right: { xs: 25, sm: 50 },
+                        background: '#6D28D9',
+                        color: 'white', '&:hover': {
+                            background: '#4E2A84',
+                        }
+                    }}
+                >
+                    <AddIcon />
+                </Fab>
+            </div>
             <Modal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
