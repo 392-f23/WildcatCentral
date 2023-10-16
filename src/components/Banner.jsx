@@ -108,7 +108,9 @@ function Banner({ user, setSelectedEventType, setSearchQuery }) {
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Button
                     variant="text"
-                    onClick={() => setSelectedEventType(page)}
+                    onClick={() => {
+                      console.log("setting page to ", page)
+                      setSelectedEventType(page)}}
                   >
                     {page}
                   </Button>
@@ -142,7 +144,9 @@ function Banner({ user, setSelectedEventType, setSearchQuery }) {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={() => setSelectedEventType(page)}
+                onClick={() => {
+                  console.log("setting page to ", page)
+                  setSelectedEventType(page)}}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}

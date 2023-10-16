@@ -3,22 +3,33 @@ import EventCard from "./EventCard";
 import { Select, SelectItem, Chip } from "@nextui-org/react";
 import Masonry from '@mui/lab/Masonry';
 import FavouriteEvent from "./FavouriteEvent";
-const EventsDisplay = ({ events, searchQuery }) => {
+
+const pages = ["School Org", "Individual Events", "Favourite Events"];
+
+const EventsDisplay = ({ events, currentPage, searchQuery, favoriteEvents, toggleFavorite}) => {
+  console.log("current page:", currentPage);
   const [uniqueCategories, setUniqueCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState([]);
-  const [favoriteEvents, setFavoriteEvents] = useState([]);
 
-  useEffect(() => {
+  /*useEffect(() => {
+
+    
+    console.log('Events prop:', events); // Add this line
+    
+    
     setSelectedCategory([]);
     // Step 1: Extract Unique Category Names
     const allCategories = events.flatMap(event => event.categoryNames);
+    console.log("events categories:", allCategories);
     const unique = [...new Set(allCategories)];
+
+    //unique.unshift(""); //add blank option as first value
     // remove undefined value from unique
     unique.splice(unique.indexOf(undefined), 1);
     setUniqueCategories(unique);
-  }, [events]);
+  }, [events]);*/
 
-  const toggleFavorite = (event) => {
+  /*const toggleFavorite = (event) => {
     console.log("Events in toggleFavorite", event);
 
     setFavoriteEvents((prevFavoriteEvents) => {
@@ -43,26 +54,28 @@ const EventsDisplay = ({ events, searchQuery }) => {
       console.log("Favorite Events in toggleFavorite after", updatedFavorites);
       return updatedFavorites;
     });
-  };
+  };*/
 
   // Step 3: Filter Events
-  const filteredEvents = events.filter(event => {
-    // Filter by searchQuery in name, description, organizationName, and category names
-    const nameMatch = event.name.toLowerCase().includes(searchQuery.toLowerCase());
-    const descriptionMatch = event.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const organizationMatch = event.organizationName.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    // Check if event belongs to selectedCategory
-    const categoryMatch = selectedCategory.length === 0 || (
-      event.categoryNames &&
-      event.categoryNames.some(category => selectedCategory.includes(category))
-    );
-  
-    // Return true if any of the conditions match
-    return (nameMatch || descriptionMatch || organizationMatch) && categoryMatch;
+  // Step 3: Filter Events
+  const filteredEvents = currentPage === "Favourite Events"
+  ? favoriteEvents
+  : events.filter(event => {
+      // Filter by searchQuery in name, description, organizationName, and category names
+      const nameMatch = event.name.toLowerCase().includes(searchQuery.toLowerCase());
+      const descriptionMatch = event.description.toLowerCase().includes(searchQuery.toLowerCase());
+      const organizationMatch = event.organizationName.toLowerCase().includes(searchQuery.toLowerCase());
+
+      // Check if event belongs to selectedCategory
+      const categoryMatch = selectedCategory.length === 0 || (
+        event.categoryNames &&
+        event.categoryNames.some(category => selectedCategory.includes(category))
+      );
+
+      // Return true if any of the conditions match
+      return (nameMatch || descriptionMatch || organizationMatch) && categoryMatch;
   });
-  
-  
+
 
   return (
     <>
@@ -91,16 +104,18 @@ const EventsDisplay = ({ events, searchQuery }) => {
               );
             }}
           >
+            
             {uniqueCategories.map((category) => (
               <SelectItem key={category} textValue={category}>
                 {category}
               </SelectItem>
             ))}
           </Select>
+
         </div>
       )}
 
-      {/* Render Filtered Events */}
+      {console.log("rendering events: ", filteredEvents)}
       <div className="events-grid flex justify-center w-full p-4">
         <Masonry columns={{ xs: 1, sm: 3, md: 4, lg: 5, xl: 6 }} spacing={2}>
           {filteredEvents.map((event) => (
@@ -113,10 +128,6 @@ const EventsDisplay = ({ events, searchQuery }) => {
               />
             </div>
           ))}
-          <FavouriteEvent
-            favoriteEvents={favoriteEvents}
-            toggleFavorite={toggleFavorite}
-          />
         </Masonry>
       </div>
     </>
