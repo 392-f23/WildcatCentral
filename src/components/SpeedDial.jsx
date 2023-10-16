@@ -7,12 +7,14 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddIcon from '@mui/icons-material/Add';
 
 import EditEventModal from './EditEventModal';
+import { useNavigate } from 'react-router-dom';
 
-export default function AppSpeedDial() {
+const AppSpeedDial = () => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const navigate = useNavigate();
 
     const actions = [
-        { icon: <FavoriteIcon />, name: 'favourites' },
+        { icon: <FavoriteIcon />, name: 'favourites', onClick: () => navigate("/favorites") },
         { icon: <AddIcon />, name: 'Add', onClick: () => onOpen() },
     ];
 
@@ -47,3 +49,5 @@ export default function AppSpeedDial() {
         </>
     );
 }
+
+export default AppSpeedDial;
