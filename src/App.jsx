@@ -8,11 +8,10 @@ import Banner from "./components/Banner";
 import EventsDisplay from "./components/EventsDisplay";
 import EditEventModal from "./components/EditEventModal";
 import useEventStore from "./stores/eventStore";
-import { useAuthState, getDbData} from "./utilities/firebase";
+import { writeToDb, useAuthState, getDbData, useDbData } from "./utilities/firebase";
+import { onValue, ref, getDatabase } from 'firebase/database';
 import FavouriteEvent from "./components/FavouriteEvent";
-
-
-
+import database from "./utilities/firebase";
 
 const App = () => {
   const [selectedEventType, setSelectedEventType] = useState("School Org");
@@ -29,15 +28,56 @@ const App = () => {
     setSelectedEventType(newEventType);
   };
 
-  const toggleFavorite = (event) => {
-    // Function to toggle favorite events
-    if (favoriteEvents.includes(event)) {
-      setFavoriteEvents(favoriteEvents.filter((e) => e !== event));
+  const toggleFavorite = async (event) => {
+    if (!user) return;
+  
+    const userId = user.uid;
+    const path = `/favorites/${userId}`;
+    let currentFavorites = favoriteEvents.map(e => e.id);
+  
+    if (currentFavorites.includes(event.id)) {
+      currentFavorites = currentFavorites.filter((e) => e !== event.id);
+      setFavoriteEvents(favoriteEvents.filter((e) => e.id !== event.id));
     } else {
+      currentFavorites.push(event.id);
       setFavoriteEvents([...favoriteEvents, event]);
     }
+  
+    await writeToDb(path, {favorites: currentFavorites});
   };
-
+  
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      if (user) {
+        const userId = user.uid;
+        const path = `/favorites/${userId}/favorites`;
+        try {
+          const data = await getDbData(path);
+          console.log("Fetched favorites:", data);
+  
+          if (data) {
+            const eventIDs = Object.values(data);
+            console.log("Event IDs:", eventIDs);
+  
+            const allEvents = Object.values(eventsList).flat();
+            
+            const newFavoriteEvents = allEvents.filter(event => eventIDs.includes(event.id.toString()));
+            
+            setFavoriteEvents(newFavoriteEvents);
+          } else {
+            setFavoriteEvents([]);
+          }
+        } catch (error) {
+          console.log("Error fetching favorites:", error);
+        }
+      } else {
+        setFavoriteEvents([]);
+      }
+    };
+  
+    fetchFavorites();
+  }, [user, eventsList]);
+  
   useEffect(() => {
     if (selectedEventType !== "Favorited Events") {
       // Fetch data and set categories when not on the "Favorite Events" page
