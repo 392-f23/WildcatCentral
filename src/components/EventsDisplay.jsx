@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import EventCard from "./EventCard";
 import { Select, SelectItem, Chip } from "@nextui-org/react";
 import Masonry from '@mui/lab/Masonry';
 import useEventStore from "../stores/eventStore";
 
-const pages = ["School Org", "Individual Events", "Favourite Events"];
-
-const EventsDisplay = ({ events, currentPage, searchQuery, favoriteEvents, toggleFavorite}) => {
+const EventsDisplay = ({ events, currentPage, searchQuery, favoriteEvents, toggleFavorite }) => {
   const categories = useEventStore(state => state.categories);
   const [selectedCategory, setSelectedCategory] = useState([]);
 
-  // Filter Events
-  const filteredEvents = currentPage === "Favourite Events"
-  ? favoriteEvents
-  : events.filter(event => {
+  const filterEvents = (events, searchQuery, selectedCategory) => {
+    return events.filter(event => {
       // Filter by searchQuery in name, description, organizationName, and category names
       const nameMatch = event.name.toLowerCase().includes(searchQuery.toLowerCase());
       const descriptionMatch = event.description.toLowerCase().includes(searchQuery.toLowerCase());
@@ -27,12 +23,17 @@ const EventsDisplay = ({ events, currentPage, searchQuery, favoriteEvents, toggl
 
       // Return true if any of the conditions match
       return (nameMatch || descriptionMatch || organizationMatch) && categoryMatch;
-  });
+    });
+  }
 
+  // Filter Events
+  const filteredEvents = currentPage === "Favorite Events" ?
+    filterEvents(favoriteEvents, searchQuery, selectedCategory)
+    : filterEvents(events, searchQuery, selectedCategory);
 
   return (
     <>
-      {categories.length > 1 && (
+      {categories && (
         <div className="w-full p-6 pb-0 dark text-foreground">
           <Select
             items={selectedCategory}
@@ -57,7 +58,7 @@ const EventsDisplay = ({ events, currentPage, searchQuery, favoriteEvents, toggl
               );
             }}
           >
-            
+
             {categories.map((category) => (
               <SelectItem key={category} textValue={category}>
                 {category}
@@ -68,7 +69,7 @@ const EventsDisplay = ({ events, currentPage, searchQuery, favoriteEvents, toggl
         </div>
       )}
 
-      <div className="events-grid flex justify-center w-full p-4">
+      <div className="events-grid flex justify-center w-full p-6">
         <Masonry columns={{ xs: 1, sm: 3, md: 4, lg: 5, xl: 6 }} spacing={2}>
           {filteredEvents.map((event) => (
             <div key={event.id} className="event-card flex justify-center">

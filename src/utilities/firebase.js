@@ -62,7 +62,7 @@ export const useDbUpdate = (path) => {
 
 export const writeToDb = (path, value) => {
     update(ref(database, path), value)
-        .then(() => console.log("Successfully written to database"))
+        .then(() => console.log("Successfully written to database.", value))
         .catch((error) => console.log(error));
 }
 

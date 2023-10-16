@@ -2,7 +2,7 @@ import React from "react";
 
 import AddIcon from '@mui/icons-material/Add';
 import { FormControl, Checkbox, ListItemText, Fab, TextField, Select, OutlinedInput, MenuItem, InputLabel } from '@mui/material';
-import { Divider, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input } from "@nextui-org/react";
+import { Divider, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from "@nextui-org/react";
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import useEventStore from "../stores/eventStore";
 
@@ -27,12 +27,8 @@ const DEFAULT_EVENT = {
     categoryNames: [],
 };
 
-const EditEventModal = ({ selectedEventType, user }) => {
-    if (!user) {
-        return <></>;
-    }
-
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+const EditEventModal = ({ isOpen, onOpen, onOpenChange }) => {
+    const selectedEventType = useEventStore(state => state.selectedEventType);
     const addEvent = useEventStore(state => state.addEvent);
     const categories = useEventStore(state => state.categories);
 
@@ -100,7 +96,7 @@ const EditEventModal = ({ selectedEventType, user }) => {
 
     return (
         <>
-            <div className={isOpen ? "hidden" : ""}>
+            {/* <div className={isOpen ? "hidden" : ""}>
                 <Fab color="primary"
                     aria-label="add"
                     onClick={onOpen}
@@ -116,7 +112,7 @@ const EditEventModal = ({ selectedEventType, user }) => {
                 >
                     <AddIcon />
                 </Fab>
-            </div>
+            </div> */}
             <Modal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}

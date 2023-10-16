@@ -14,6 +14,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import useEventStore from "../stores/eventStore";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -27,6 +28,7 @@ const ExpandMore = styled((props) => {
 }));
 
 const EventCard = ({ event, isFavorite, toggleFavorite }) => {
+  const user = useEventStore((state) => state.user);
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -66,13 +68,15 @@ const EventCard = ({ event, isFavorite, toggleFavorite }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton
-          aria-label="add to favorites"
-          onClick={toggleFavorite}
-          color={isFavorite ? "primary" : "default"}
-        >
-          <FavoriteIcon />
-        </IconButton>
+        {user ? (
+          <IconButton
+            aria-label="add to favorites"
+            onClick={toggleFavorite}
+            color={isFavorite ? "primary" : "default"}
+          >
+            <FavoriteIcon />
+          </IconButton>
+        ) : null}
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>

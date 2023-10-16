@@ -16,20 +16,47 @@ import MenuItem from "@mui/material/MenuItem";
 import PetsIcon from '@mui/icons-material/Pets';
 import SearchBar from "./SearchBar";
 
-import { signInWithGoogle, signOut } from '../utilities/firebase';
+import { signInWithGoogle, signOut, useAuthState } from '../utilities/firebase';
 import { useProfile } from '../utilities/profile';
 import { Logout } from "@mui/icons-material";
 
-const pages = ["School Org", "Individual Events", "Favourite Events"];
+import { useNavigate } from "react-router-dom";
+import useEventStore from "../stores/eventStore";
 
-function Banner({ user, setSelectedEventType, setSearchQuery }) {
+const pages = [{
+  name: "School Org",
+  link: "/"
+},
+{
+  name: "Individual Events",
+  link: "/individual-events"
+},
+{
+  name: "Favorite Events",
+  link: "/favorites",
+  needAuth: true
+}];
+
+function Banner() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [profile, profileLoading, profileError] = useProfile();
 
+  const setSearchQuery = useEventStore(state => state.setSearchQuery);
+  const [user] = useAuthState();
+  const setUser = useEventStore(state => state.setUser);
+  const setFavoriteEvents = useEventStore(state => state.setFavoriteEvents);
+
+  const navigate = useNavigate();
+
   const login = () => {
     signInWithGoogle();
     setAnchorElUser(null);
+  };
+
+  const logout = () => {
+    signOut();
+    setFavoriteEvents([]);
   };
 
   const handleCloseNavMenu = () => {
@@ -39,6 +66,10 @@ function Banner({ user, setSelectedEventType, setSearchQuery }) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  React.useEffect(() => {
+    setUser(user);
+  }, [user]);
 
   return (
     <AppBar position="static">
@@ -92,17 +123,21 @@ function Banner({ user, setSelectedEventType, setSearchQuery }) {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+              {pages.map((page) => {
+                if (page.needAuth && !user) {
+                  return null;
+                }
+                return (<MenuItem
+                  key={`nav-m-${page.name}`}
+                  onClick={handleCloseNavMenu}>
                   <Button
                     variant="text"
-                    onClick={() => {
-                      setSelectedEventType(page)}}
+                    onClick={e => navigate(page.link)}
                   >
-                    {page}
+                    {page.name}
                   </Button>
-                </MenuItem>
-              ))}
+                </MenuItem>)
+              })}
             </Menu>
           </Box>
           <PetsIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
@@ -125,19 +160,21 @@ function Banner({ user, setSelectedEventType, setSearchQuery }) {
             Central
           </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={() => {
-                  setSelectedEventType(page)}}
+            {pages.map((page) => {
+              if (page.needAuth && !user) {
+                return null;
+              }
+              return (<Button
+                key={`nav-${page.name}`}
                 sx={{ my: 2, color: "white", display: "block" }}
+                onClick={e => navigate(page.link)}
               >
-                {page}
-              </Button>
-            ))}
+                {page.name}
+              </Button>)
+            })}
           </Box>
-          <SearchBar 
-            handleSearch={setSearchQuery} 
+          <SearchBar
+            handleSearch={setSearchQuery}
             className="p-2"
           />
           {user ? (
@@ -181,7 +218,7 @@ function Banner({ user, setSelectedEventType, setSearchQuery }) {
                   </Box>
                 </MenuItem>
                 <Divider />
-                <MenuItem key="nav-signout" onClick={signOut}>
+                <MenuItem key="nav-signout" onClick={logout}>
                   <ListItemIcon>
                     <Logout fontSize="small" />
                   </ListItemIcon>
