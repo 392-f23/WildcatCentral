@@ -35,6 +35,10 @@ const pages = [{
   name: "Favorite Events",
   link: "/favorites",
   needAuth: true
+},
+{
+  name: "Map View",
+  link: "/map-view"
 }];
 
 function Banner() {
@@ -127,6 +131,7 @@ function Banner() {
                 if (page.needAuth && !user) {
                   return null;
                 }
+                //console.log("got here for page ", page);
                 return (<MenuItem
                   key={`nav-m-${page.name}`}
                   onClick={handleCloseNavMenu}>
@@ -164,6 +169,7 @@ function Banner() {
               if (page.needAuth && !user) {
                 return null;
               }
+              //console.log("got here for page ", page);
               return (<Button
                 key={`nav-${page.name}`}
                 sx={{ my: 2, color: "white", display: "block" }}
