@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 
 import EventsDisplay from "../components/EventsDisplay";
-import EditEventModal from "../components/EditEventModal";
 import useEventStore from "../stores/eventStore";
 import { writeToDb, getDbData } from "../utilities/firebase";
 import AppSpeedDial from "../components/SpeedDial";
 
 const EventsDisplayPage = ({ selectedEventType }) => {
-  const setEvents = useEventStore((state) => state.setEvents);
   const eventsList = useEventStore((state) => state.events);
   const setCategories = useEventStore((state) => state.setCategories);
   const user = useEventStore((state) => state.user);
@@ -16,9 +14,7 @@ const EventsDisplayPage = ({ selectedEventType }) => {
   const setFavoriteEvents = useEventStore((state) => state.setFavoriteEvents);
 
   useEffect(() => {
-    getDbData("/events").then((data) => {
-      let pulledData = data;
-      setEvents(pulledData);
+    if (eventsList && favoriteEvents) {
       if (selectedEventType === "Favorite Events") {
         const allCategories = favoriteEvents.flatMap(event => event.categoryNames) || [];
         const uniqueCats = [...new Set(allCategories)];
@@ -26,17 +22,15 @@ const EventsDisplayPage = ({ selectedEventType }) => {
         uniqueCats.splice(uniqueCats.indexOf(undefined), 1);
         setCategories(uniqueCats);
       } else {
-        const selectedEventData = data[selectedEventType];
+        const selectedEventData = eventsList[selectedEventType];
         const allCategories = selectedEventData?.flatMap(event => event.categoryNames) || [];
         const uniqueCats = [...new Set(allCategories)];
         // remove undefined value from uniqueCats
         uniqueCats.splice(uniqueCats.indexOf(undefined), 1);
         setCategories(uniqueCats);
       }
-    }).catch((error) => {
-      console.log(error);
-    });
-  }, []);
+    }
+  }, [eventsList, favoriteEvents]);
 
   const fetchFavorites = async () => {
     if (user && eventsList) {
@@ -84,21 +78,15 @@ const EventsDisplayPage = ({ selectedEventType }) => {
 
   return (
     <div className="index">
-      {user && selectedEventType != "Favorite Events" && <AppSpeedDial />}
+      {user && selectedEventType != "Favorite Events" && <AppSpeedDial selectedEventType={selectedEventType} />}
       {eventsList ? (
-        <>
-          <EventsDisplay
-            events={eventsList[selectedEventType] || []}
-            currentPage={selectedEventType}
-            searchQuery={searchQuery}
-            favoriteEvents={favoriteEvents}
-            toggleFavorite={toggleFavorite}
-          />
-          <EditEventModal
-            selectedEventType={selectedEventType}
-            user={user}
-          />
-        </>
+        <EventsDisplay
+          events={eventsList[selectedEventType] || []}
+          currentPage={selectedEventType}
+          searchQuery={searchQuery}
+          favoriteEvents={favoriteEvents}
+          toggleFavorite={toggleFavorite}
+        />
       ) : (
         <div className="text-center mt-8">
           <p className="text-lg font-bold text-white">Loading...Paws for a moment</p>

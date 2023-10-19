@@ -856,6 +856,36 @@
             "fromWildcatConnection": true,
             "image": "https://se-images.campuslabs.com/clink/images/fef63bcf-3a72-42fc-8749-a8dd77a30bf9088e2cfa-5d63-4dc5-aad4-7182590e475d.png",
             "searchScore": 99.0046
+        },
+        {
+            "id": "9531372",
+            "institutionId": 7,
+            "organizationId": 34608,
+            "organizationIds": [],
+            "branchId": 19059,
+            "branchIds": [],
+            "organizationName": "Student Organizations & Activities",
+            "organizationProfilePicture": "https://se-images.campuslabs.com/clink/images/408d6564-5112-47db-8691-b55adeab1a632fc369d8-a92b-4d44-ba33-0d1d2ff8d299.jpg",
+            "organizationNames": [],
+            "name": "SOA Leadership Transition Conference",
+            "description": "<p>Save the date: SOA is hosting a leadership transition conference for students at Norris on Sunday 4/21/24. More details to come!</p>",
+            "location": "Norris University Center",
+            "startsOn": "2024-04-21T15:00:00+00:00",
+            "endsOn": "2024-04-21T16:00:00+00:00",
+            "imagePath": null,
+            "theme": "ThoughtfulLearning",
+            "categoryIds": [],
+            "categoryNames": [],
+            "benefitNames": [],
+            "visibility": "Public",
+            "status": "Approved",
+            "latitude": null,
+            "longitude": null,
+            "recScore": null,
+            "addedOn": "2023-10-19T16:24:31+00:00",
+            "fromWildcatConnection": true,
+            "image": "https://static.campuslabsengage.com/discovery/images/events/social.jpg",
+            "searchScore": 73.82273
         }
     ]
 }

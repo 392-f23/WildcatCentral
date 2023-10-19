@@ -1,16 +1,28 @@
-import React from "react";
-import { Outlet, useNavigation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet } from "react-router-dom";
+import { getDbData } from "../utilities/firebase";
+import useEventStore from "../stores/eventStore";
 import "./root.css";
 
 import Banner from "../components/Banner";
 
 const Root = () => {
-    const navigation = useNavigation();
+    const setEvents = useEventStore((state) => state.setEvents);
+
+    useEffect(() => {
+        getDbData("/events").then((data) => {
+          setEvents(data);
+        }).catch((error) => {
+          console.log(error);
+        });
+      }, []);
 
     return (
-        <div className="App">
+        <div className="App min-h-screen flex flex-col">
             <Banner />
-            <Outlet />
+            <div className="flex-grow">
+                <Outlet />
+            </div>
             <footer className="w-full p-8">
                 <p className="text-center text-default-500 text-sm">Northwestern University</p>
                 <p className="text-center text-default-500 text-sm">© 2023 Wildcat Central</p>

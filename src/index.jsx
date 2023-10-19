@@ -16,6 +16,7 @@ import ErrorPage from './pages/ErrorPage';
 import IndividualEventsPage from './pages/IndividualEventsPage';
 import FavoritePage from './pages/FavoritePage';
 import EventsMapPage from './pages/EventsMapPage';
+import NewEventPage from './pages/NewEventPage';
 
 const theme = createTheme({
   palette: {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "map-view",
         element: <EventsMapPage />,
+      },
+      {
+        path: "newevent",
+        element: <NewEventPage />,
       },
     ],
   },
