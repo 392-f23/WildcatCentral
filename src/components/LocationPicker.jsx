@@ -27,7 +27,7 @@ const LocationPicker = ({ initialLocation, onLocationChange }) => {
   };
 
   return (
-    <MapContainer center={initialLocation} zoom={13} style={{ height: '300px', width: '100%' }}>
+    <MapContainer center={initialLocation} zoom={15} style={{ height: '300px', width: '100%' }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />

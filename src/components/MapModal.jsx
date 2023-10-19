@@ -57,7 +57,7 @@ const MapModal = ({
           {shouldDisplayMap ? (
             <MapContainer
               center={[coordinates.latitude, coordinates.longitude]}
-              zoom={13}
+              zoom={15}
               style={{ width: "100%", height: "300px" }}
             >
               <TileLayer
