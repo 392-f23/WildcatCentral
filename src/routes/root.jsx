@@ -20,7 +20,7 @@ const Root = () => {
     return (
         <div className="App min-h-screen flex flex-col">
             <Banner />
-            <div className="flex-grow">
+            <div className="flex-grow mt-12 md:mt-16">
                 <Outlet />
             </div>
             <footer className="w-full p-8">
