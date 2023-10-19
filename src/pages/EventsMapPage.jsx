@@ -6,8 +6,6 @@ import { fetchCoordinatesFromName } from "../components/MapModal";
 import EventCard from "../components/EventCard";
 import { getDbData, writeToDb } from "../utilities/firebase";
 
-import "./EventsMapPage.css";
-
 const EventsMapPage = () => {
   const eventsList = useEventStore((state) => state.events);
   const [allEvents, setAllEvents] = useState([]);

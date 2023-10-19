@@ -11,7 +11,7 @@ const NewEventPage = () => {
         );
     } else {
         return (
-            <div className="flex justify-center items-center mt-8">
+            <div className="flex justify-center items-center mt-14 md:mt-20">
                 <div className="w-full max-w-6xl p-4 md:flex md:space-x-6">
                     <div className="md:w-2/3">
                         <EventEditor />

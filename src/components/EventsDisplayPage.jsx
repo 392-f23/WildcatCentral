@@ -77,7 +77,7 @@ const EventsDisplayPage = ({ selectedEventType }) => {
   };
 
   return (
-    <div className="index">
+    <div className="index mt-12 md:mt-16">
       {user && selectedEventType != "Favorite Events" && <AppSpeedDial selectedEventType={selectedEventType} />}
       {eventsList ? (
         <EventsDisplay
