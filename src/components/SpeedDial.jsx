@@ -11,7 +11,7 @@ const AppSpeedDial = () => {
     const navigate = useNavigate();
 
     const actions = [
-        { icon: <FavoriteIcon />, name: 'favourites', onClick: () => navigate("/favorites") },
+        { icon: <FavoriteIcon />, name: 'favorites', onClick: () => navigate("/favorites") },
         { icon: <AddIcon />, name: 'Add', onClick: () => navigate("/newevent") },
     ];
 

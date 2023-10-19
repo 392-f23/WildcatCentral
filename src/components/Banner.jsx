@@ -20,7 +20,7 @@ import { signInWithGoogle, signOut, useAuthState } from '../utilities/firebase';
 import { useProfile } from '../utilities/profile';
 import { Logout } from "@mui/icons-material";
 
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import useEventStore from "../stores/eventStore";
 
 const pages = [{
@@ -84,7 +84,7 @@ function Banner() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            onClick={() => navigate("/")}
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -93,6 +93,10 @@ function Banner() {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              cursor: "pointer", // This line makes the cursor change to a hand (pointer) when hovering over the element
+              '&:hover': {
+                color: "rgba(240, 222, 255)"
+              }
             }}
           >
             Wildcat Central
@@ -127,21 +131,15 @@ function Banner() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => {
-                if (page.needAuth && !user) {
-                  return null;
-                }
-                return (<MenuItem
-                  key={`nav-m-${page.name}`}
-                  onClick={handleCloseNavMenu}>
-                  <Button
-                    variant="text"
-                    onClick={e => navigate(page.link)}
-                  >
-                    {page.name}
-                  </Button>
-                </MenuItem>)
-              })}
+              {pages.map((page) =>
+                (!page.needAuth || user) && (
+                  <MenuItem key={`nav-m-${page.name}`} onClick={handleCloseNavMenu}>
+                    <Button variant="text" onClick={() => navigate(page.link)}>
+                      {page.name}
+                    </Button>
+                  </MenuItem>
+                )
+              )}
             </Menu>
           </Box>
           <PetsIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />

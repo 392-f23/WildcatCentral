@@ -1,15 +1,14 @@
 import React from "react";
 import EventsDisplayPage from '../components/EventsDisplayPage';
 import useEventStore from "../stores/eventStore";
+import { Navigate } from 'react-router-dom';
 
-const FavouritesPage = () => {
+const FavoritesPage = () => {
   const user = useEventStore((state) => state.user);
 
   if (!user) {
     return (
-      <div className="flex flex-col items-center justify-center h-96">
-        <h1 className="text-white">Please sign in to view your favorite events.</h1>
-      </div>
+      <Navigate to="/" replace />
     );
   } else {
     return (
@@ -18,4 +17,4 @@ const FavouritesPage = () => {
   }
 };
 
-export default FavouritesPage;
+export default FavoritesPage;
