@@ -93,10 +93,12 @@ const EventsMapPage = () => {
         style={{ width: "100%", height: "100%" }}
         zoomControl={false}
       >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        />
+        <div data-testid="map-container">
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          />
+        </div>
         <ZoomControl position="bottomright" />
         {allEvents &&
           allEvents.map((event) => {
@@ -111,11 +113,11 @@ const EventsMapPage = () => {
               return (
                 <Marker position={[latitude, longitude]} key={event.id}>
                   <Popup>
-                    <EventCard 
-                    event={event}
-                    isFavorite={favoriteEvents.includes(event)}
-                toggleFavorite={() => toggleFavorite(event)}
-                     />
+                    <EventCard
+                      event={event}
+                      isFavorite={favoriteEvents.includes(event)}
+                      toggleFavorite={() => toggleFavorite(event)}
+                    />
                   </Popup>
                 </Marker>
               );
