@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for pages/ErrorPage.jsx</title>
+    <title>Code coverage report for components/SpeedDial.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">pages</a> ErrorPage.jsx</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">components</a> SpeedDial.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>40/40</span>
+                <span class='fraction'>41/41</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>1/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>40/40</span>
+                <span class='fraction'>41/41</span>
             </div>
         
             
@@ -108,6 +108,11 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -126,64 +131,59 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useRouteError } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
-import { Button } from "@nextui-org/button";
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import AddIcon from '@mui/icons-material/Add';
 &nbsp;
-const ErrorPage = () =&gt; {
-    const error = useRouteError();
+import { useNavigate } from 'react-router-dom';
+&nbsp;
+const AppSpeedDial = () =&gt; {
     const navigate = useNavigate();
 &nbsp;
-    console.error(error);
+    const actions = [
+        { icon: &lt;FavoriteIcon /&gt;, name: 'favorites', onClick: <span class="fstat-no" title="function not covered" >() =&gt; navigate("/favorites") }</span>,
+        { icon: &lt;AddIcon /&gt;, name: 'Add', onClick: <span class="fstat-no" title="function not covered" >() =&gt; navigate("/newevent") }</span>,
+    ];
 &nbsp;
     return (
-        &lt;div
-            id="error-page"
-            className="flex flex-col justify-between min-h-screen bg-[#282c34] text-white p-6"
+        &lt;SpeedDial
+            ariaLabel="App SpeedDial"
+            sx={{
+                position: 'fixed',
+                bottom: { xs: 25, sm: 50 },
+                right: { xs: 25, sm: 50 },
+            }}
+            icon={&lt;SpeedDialIcon /&gt;}
         &gt;
-            &lt;div className="text-center space-y-6 self-center mt-auto"&gt;
-                &lt;span role="img" aria-label="Error" className="text-6xl"&gt;⚠️&lt;/span&gt;
-                &lt;h1 className="text-4xl font-semibold"&gt;Oops!&lt;/h1&gt;
-                &lt;p className="text-lg"&gt;Sorry, an unexpected error has occurred.&lt;/p&gt;
-                &lt;p className="italic text-gray-400"&gt;
-                    {error.statusText || error.message}
-                &lt;/p&gt;
-                &lt;Button
-                    auto
-                    onClick={() =&gt; navigate('/')}
-                    className="text-white bg-[#4e2a84] hover:bg-[#6d28d9]"
-                &gt;
-                    Return to Home
-                &lt;/Button&gt;
-            &lt;/div&gt;
-&nbsp;
-            &lt;footer className="w-full p-8 mt-auto border-gray-600"&gt;
-                &lt;p className="text-center text-gray-400 text-sm"&gt;Northwestern University&lt;/p&gt;
-                &lt;p className="text-center text-gray-400 text-sm"&gt;© 2023 Wildcat Central&lt;/p&gt;
-            &lt;/footer&gt;
-        &lt;/div&gt;
+            {actions.map((action) =&gt; (
+                &lt;SpeedDialAction
+                    key={action.name}
+                    icon={action.icon}
+                    tooltipTitle={action.name}
+                    onClick={action.onClick}
+                    tooltipOpen
+                /&gt;
+            ))}
+        &lt;/SpeedDial&gt;
     );
-};
+}
 &nbsp;
-export default ErrorPage;
-&nbsp;</pre></td></tr></table></pre>
+export default AppSpeedDial;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
