@@ -26,7 +26,7 @@ vi.mock('../stores/eventStore', () => {
       longitude: 0,
       organizationName: 'Org 1',
       categoryNames: [
-        "Information/Intro Session"
+        "Information/Mock Session 1"
       ],
     }],
     'School Org': [{
@@ -37,7 +37,7 @@ vi.mock('../stores/eventStore', () => {
       longitude: 0,
       organizationName: 'Org 2',
       categoryNames: [
-        "Information/Intro Session"
+        "Information/Mock Session 2"
       ],
     }],
   };
@@ -48,13 +48,14 @@ vi.mock('../stores/eventStore', () => {
   const setCategories = vi.fn();
 
   const searchQuery = '';
+  const categories = ['Information/Mock Session 1', 'Information/Mock Session 2'];
 
   const useEventStore = vi.fn((selector) => {
     if (typeof selector === 'function') {
       // Call the selector with the mock state
-      return selector({ events: mockEvents, favoriteEvents: mockFavorites, setFavoriteEvents, user: { uid: 'user1' }, searchQuery: searchQuery, setCategories });
+      return selector({ events: mockEvents, favoriteEvents: mockFavorites, setFavoriteEvents, user: { uid: 'user1' }, searchQuery: searchQuery, setCategories, categories });
     }
-    return { events: mockEvents, favoriteEvents: mockFavorites, setFavoriteEvents, user: { uid: 'user1' }, searchQuery: searchQuery, setCategories };
+    return { events: mockEvents, favoriteEvents: mockFavorites, setFavoriteEvents, user: { uid: 'user1' }, searchQuery: searchQuery, setCategories, categories };
   });
 
   return { default: useEventStore };
@@ -86,15 +87,17 @@ describe('<IndexPage />', () => {
 
     // expect that the setFavoriteEvents function from the store is called once with the correct event
     expect(useEventStore().setFavoriteEvents).toHaveBeenCalledTimes(1);
-    expect(useEventStore().setFavoriteEvents).toHaveBeenCalledWith([{ id: 1,
+    expect(useEventStore().setFavoriteEvents).toHaveBeenCalledWith([{
+      id: 1,
       name: 'Event 1',
       description: "This is the description of a mock event.",
       latitude: 0,
       longitude: 0,
       organizationName: 'Org 1',
       categoryNames: [
-        "Information/Intro Session"
-      ], }]);
+        "Information/Mock Session 1"
+      ],
+    }]);
 
   });
 
@@ -109,15 +112,17 @@ describe('<IndexPage />', () => {
 
     // expect that the setFavoriteEvents function from the store is called once with the correct event
     expect(useEventStore().setFavoriteEvents).toHaveBeenCalledTimes(1);
-    expect(useEventStore().setFavoriteEvents).toHaveBeenCalledWith([{ id: 2,
+    expect(useEventStore().setFavoriteEvents).toHaveBeenCalledWith([{
+      id: 2,
       name: 'Event 2',
       description: 'This is the description of a mock event.',
       latitude: 0,
       longitude: 0,
       organizationName: 'Org 2',
       categoryNames: [
-        "Information/Intro Session"
-      ], }]);
+        "Information/Mock Session 2"
+      ],
+    }]);
 
   });
 

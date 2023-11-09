@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">59.55% </span>
+                <span class="strong">87.64% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>53/89</span>
+                <span class='fraction'>78/89</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">54.54% </span>
+                <span class="strong">63.63% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/11</span>
+                <span class='fraction'>7/11</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">59.55% </span>
+                <span class="strong">87.64% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>53/89</span>
+                <span class='fraction'>78/89</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -188,6 +188,21 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -196,31 +211,16 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -276,22 +276,22 @@ const EventsDisplay = ({ events, currentPage, searchQuery, favoriteEvents, toggl
 &nbsp;
   return (
     &lt;&gt;
-      {<span class="branch-0 cbranch-no" title="branch not covered" >categories &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;div className="w-full p-6 pb-0 dark text-foreground"&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;Select</span>
-<span class="cstat-no" title="statement not covered" >            items={selectedCategory}</span>
-<span class="cstat-no" title="statement not covered" >            label="Categories"</span>
-<span class="cstat-no" title="statement not covered" >            variant="bordered"</span>
-<span class="cstat-no" title="statement not covered" >            isMultiline={true}</span>
-<span class="cstat-no" title="statement not covered" >            selectionMode="multiple"</span>
-<span class="cstat-no" title="statement not covered" >            placeholder="Select Categories"</span>
-<span class="cstat-no" title="statement not covered" >            labelPlacement="outside"</span>
-<span class="cstat-no" title="statement not covered" >            className="dark"</span>
-<span class="cstat-no" title="statement not covered" >            classNames={{</span>
-<span class="cstat-no" title="statement not covered" >              trigger: "min-h-unit-12 py-2",</span>
-<span class="cstat-no" title="statement not covered" >            }}</span>
-<span class="cstat-no" title="statement not covered" >            onChange={<span class="fstat-no" title="function not covered" >(e) =&gt; setSelectedCategory(e.target.value)}</span></span>
-<span class="cstat-no" title="statement not covered" >            renderValue={<span class="fstat-no" title="function not covered" >(items) =&gt; {</span></span>
+      {categories &amp;&amp; (
+        &lt;div className="w-full p-6 pb-0 dark text-foreground"&gt;
+          &lt;Select
+            items={selectedCategory}
+            label="Categories"
+            variant="bordered"
+            isMultiline={true}
+            selectionMode="multiple"
+            placeholder="Select Categories"
+            labelPlacement="outside"
+            className="dark"
+            classNames={{
+              trigger: "min-h-unit-12 py-2",
+            }}
+            onChange={<span class="fstat-no" title="function not covered" >(e) =&gt; setSelectedCategory(e.target.value)}</span>
+            renderValue={<span class="fstat-no" title="function not covered" >(items) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >              return (</span>
 <span class="cstat-no" title="statement not covered" >                &lt;div className="flex flex-wrap gap-2 dark"&gt;</span>
 <span class="cstat-no" title="statement not covered" >                  {items.map((item) =&gt; (</span>
@@ -300,16 +300,16 @@ const EventsDisplay = ({ events, currentPage, searchQuery, favoriteEvents, toggl
 <span class="cstat-no" title="statement not covered" >                &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >              );</span>
 <span class="cstat-no" title="statement not covered" >            }}</span>
-<span class="cstat-no" title="statement not covered" >          &gt;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >            {categories.map((category) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >              &lt;SelectItem key={category} textValue={category}&gt;</span>
-<span class="cstat-no" title="statement not covered" >                {category}</span>
-<span class="cstat-no" title="statement not covered" >              &lt;/SelectItem&gt;</span>
-<span class="cstat-no" title="statement not covered" >            ))}</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/Select&gt;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
+          &gt;
+&nbsp;
+            {categories.map((category) =&gt; (
+              &lt;SelectItem key={category} textValue={category}&gt;
+                {category}
+              &lt;/SelectItem&gt;
+            ))}
+          &lt;/Select&gt;
+&nbsp;
+        &lt;/div&gt;
       )}
 &nbsp;
       &lt;div className="events-grid flex justify-center w-full p-6"&gt;
@@ -337,7 +337,7 @@ export default EventsDisplay;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-09T17:59:10.893Z
+                at 2023-11-09T18:02:09.837Z
             </div>
         <script src="../prettify.js"></script>
         <script>
