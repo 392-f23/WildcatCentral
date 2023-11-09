@@ -24,7 +24,10 @@ vi.mock('../stores/eventStore', () => {
       description: 'This is the description of a mock event.',
       latitude: 0,
       longitude: 0,
-      organizationName: 'Org 1'
+      organizationName: 'Org 1',
+      categoryNames: [
+        "Information/Intro Session"
+      ],
     }],
     'School Org': [{
       id: 2,
@@ -32,7 +35,10 @@ vi.mock('../stores/eventStore', () => {
       description: 'This is the description of a mock event.',
       latitude: 0,
       longitude: 0,
-      organizationName: 'Org 2'
+      organizationName: 'Org 2',
+      categoryNames: [
+        "Information/Intro Session"
+      ],
     }],
   };
 
@@ -64,7 +70,7 @@ describe('<IndexPage />', () => {
   afterEach(() => {
     useEventStore().setFavoriteEvents.mockClear();
   });
-  
+
   it('given user login and favorite icon is clicked item is added to favorites', async () => {
     getDbData.mockResolvedValue({ '1': 'Event 1' }); // Event 1 should be added to favorites
 
@@ -80,7 +86,15 @@ describe('<IndexPage />', () => {
 
     // expect that the setFavoriteEvents function from the store is called once with the correct event
     expect(useEventStore().setFavoriteEvents).toHaveBeenCalledTimes(1);
-    expect(useEventStore().setFavoriteEvents).toHaveBeenCalledWith([{ id: 1, name: 'Event 1', description: "This is the description of a mock event.", latitude: 0, longitude: 0, organizationName: 'Org 1' }]);
+    expect(useEventStore().setFavoriteEvents).toHaveBeenCalledWith([{ id: 1,
+      name: 'Event 1',
+      description: "This is the description of a mock event.",
+      latitude: 0,
+      longitude: 0,
+      organizationName: 'Org 1',
+      categoryNames: [
+        "Information/Intro Session"
+      ], }]);
 
   });
 
@@ -95,7 +109,15 @@ describe('<IndexPage />', () => {
 
     // expect that the setFavoriteEvents function from the store is called once with the correct event
     expect(useEventStore().setFavoriteEvents).toHaveBeenCalledTimes(1);
-    expect(useEventStore().setFavoriteEvents).toHaveBeenCalledWith([{ id: 2, name: 'Event 2', description: 'This is the description of a mock event.', latitude: 0, longitude: 0, organizationName: 'Org 2' }]);
+    expect(useEventStore().setFavoriteEvents).toHaveBeenCalledWith([{ id: 2,
+      name: 'Event 2',
+      description: 'This is the description of a mock event.',
+      latitude: 0,
+      longitude: 0,
+      organizationName: 'Org 2',
+      categoryNames: [
+        "Information/Intro Session"
+      ], }]);
 
   });
 
