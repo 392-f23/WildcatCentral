@@ -78,7 +78,14 @@ const EventsDisplay = ({
           >
             {Array.isArray(categories) &&
               categories.map((category) => (
-                <SelectItem key={category} textValue={category} test-id>
+                <SelectItem
+                  key={category}
+                  textValue={category}
+                  data-testid={`category-option-${category.replace(
+                    /\s+/g,
+                    "-"
+                  )}`}
+                >
                   {category}
                 </SelectItem>
               ))}
