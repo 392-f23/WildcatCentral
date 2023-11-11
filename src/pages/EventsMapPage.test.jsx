@@ -8,8 +8,6 @@ import EventsMapPage from './EventsMapPage';
 import useEventStore from '../stores/eventStore';
 import { getDbData, writeToDb } from '../utilities/firebase';
 
-console.log("asd");
-
 vi.mock('../stores/eventStore', () => {
     const mockEvents = {
         'Individual Events': [{ id: 1, name: 'Event 1', latitude: 42.0, longitude: -87.0, organizationName: ['Org 1'] }],

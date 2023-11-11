@@ -12,25 +12,31 @@ const EventsDisplayPage = ({ selectedEventType }) => {
   const searchQuery = useEventStore((state) => state.searchQuery);
   const favoriteEvents = useEventStore((state) => state.favoriteEvents);
   const setFavoriteEvents = useEventStore((state) => state.setFavoriteEvents);
+  const hasEvents =
+    eventsList &&
+    eventsList[selectedEventType] &&
+    eventsList[selectedEventType].length > 0;
 
   useEffect(() => {
     if (eventsList && favoriteEvents) {
       if (selectedEventType === "Favorite Events") {
-        const allCategories = favoriteEvents.flatMap(event => event.categoryNames) || [];
+        const allCategories =
+          favoriteEvents.flatMap((event) => event.categoryNames) || [];
         const uniqueCats = [...new Set(allCategories)];
         // remove undefined value from uniqueCats
         uniqueCats.splice(uniqueCats.indexOf(undefined), 1);
         setCategories(uniqueCats);
       } else {
         const selectedEventData = eventsList[selectedEventType];
-        const allCategories = selectedEventData?.flatMap(event => event.categoryNames) || [];
+        const allCategories =
+          selectedEventData?.flatMap((event) => event.categoryNames) || [];
         const uniqueCats = [...new Set(allCategories)];
         // remove undefined value from uniqueCats
         uniqueCats.splice(uniqueCats.indexOf(undefined), 1);
         setCategories(uniqueCats);
       }
     }
-  }, [eventsList, favoriteEvents]);
+  }, [eventsList, selectedEventType, history]);
 
   const fetchFavorites = async () => {
     if (user && eventsList) {
@@ -41,7 +47,9 @@ const EventsDisplayPage = ({ selectedEventType }) => {
         if (data) {
           const eventIDs = Object.values(data);
           const allEvents = Object.values(eventsList).flat();
-          const newFavoriteEvents = allEvents.filter(event => eventIDs.includes(event.id.toString()));
+          const newFavoriteEvents = allEvents.filter((event) =>
+            eventIDs.includes(event.id.toString())
+          );
           setFavoriteEvents(newFavoriteEvents);
         } else {
           setFavoriteEvents([]);
@@ -63,7 +71,7 @@ const EventsDisplayPage = ({ selectedEventType }) => {
 
     const userId = user.uid;
     const path = `/favorites/${userId}`;
-    let currentFavorites = favoriteEvents.map(e => e.id);
+    let currentFavorites = favoriteEvents.map((e) => e.id);
 
     if (currentFavorites.includes(event.id)) {
       currentFavorites = currentFavorites.filter((e) => e !== event.id);
@@ -78,18 +86,26 @@ const EventsDisplayPage = ({ selectedEventType }) => {
 
   return (
     <div className="index mt-12 md:mt-16">
-      {user && selectedEventType != "Favorite Events" && <AppSpeedDial selectedEventType={selectedEventType} />}
+      {user && selectedEventType !== "Favorite Events" && (
+        <AppSpeedDial selectedEventType={selectedEventType} />
+      )}
       {eventsList ? (
-        <EventsDisplay
-          events={eventsList[selectedEventType] || []}
-          currentPage={selectedEventType}
-          searchQuery={searchQuery}
-          favoriteEvents={favoriteEvents}
-          toggleFavorite={toggleFavorite}
-        />
+        hasEvents ? (
+          <EventsDisplay
+            events={eventsList[selectedEventType]}
+            currentPage={selectedEventType}
+            searchQuery={searchQuery}
+            favoriteEvents={favoriteEvents}
+            toggleFavorite={toggleFavorite}
+          />
+        ) : (
+          <NoEventPage eventType={selectedEventType} />
+        )
       ) : (
         <div className="text-center mt-8">
-          <p className="text-lg font-bold text-white">Loading...Paws for a moment</p>
+          <p className="text-lg font-bold text-white">
+            Loading...Paws for a moment
+          </p>
         </div>
       )}
     </div>
