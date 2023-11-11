@@ -22,6 +22,15 @@ describe("<EventsDisplay />", () => {
       organizationName: "Org 1",
       categoryNames: ["Information/Mock Session 1"],
     },
+    {
+      id: 2,
+      name: "Event 2",
+      description: "This is the description of a mock event.",
+      latitude: 0,
+      longitude: 0,
+      organizationName: "Org 2",
+      categoryNames: ["Information/Mock Session 2"],
+    },
   ];
 
   beforeEach(() => {
@@ -41,11 +50,6 @@ describe("<EventsDisplay />", () => {
 
     const select = await screen.findByTestId("category-select");
     userEvent.click(select);
-
-    const categoryOption = await screen.findByTestId(
-      "category-option-Information-Mock-Session-1"
-    );
-    userEvent.click(categoryOption);
 
     expect(screen.getByText("Event 1")).toBeInTheDocument();
   });
