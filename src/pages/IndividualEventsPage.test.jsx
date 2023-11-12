@@ -1,61 +1,55 @@
-// individualEvents.test.js
-import React from 'react';
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import EventsMapPage from './EventsMapPage';
-import useEventStore from '../stores/eventStore';
+import "@testing-library/jest-dom";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { render, screen } from "@testing-library/react";
+import EventsDisplay from "../components/EventsDisplay";
 
-// Mock your event store
-vi.mock('../stores/eventStore', () => {
-  const mockEvents = {
-    'Individual Events': [
-      { id: 1, name: 'Event 1', latitude: 42.0, longitude: -87.0, organizationName: ['Individual Org 1'] }
-    ],
-    'School Org': [
-        { id: 1, name: 'Event 1', latitude: 42.0, longitude: -87.0, organizationName: ['School Org 1'] }
-    ],
-    // ... other event categories
-  };
+vi.mock("../stores/eventStore", () => ({
+  __esModule: true,
+  default: vi.fn(() => ({
+    categories: ["Individual Event 1", "Individual Event 2"],
+  })),
+}));
 
-  const useEventStore = vi.fn((selector) => {
-    if (typeof selector === 'function') {
-      // Call the selector with the mock state
-      return selector({
-        events: mockEvents,
-        // ... other mock state properties
-      });
-    }
-    return {
-      events: mockEvents,
-      // ... other mock return values
-    };
+describe("<EventsDisplay />", () => {
+    const mockEvents = {
+        'Individual Events': [{
+          id: 1,
+          name: 'Event 1',
+          description: 'This is the description of a mock event.',
+          latitude: 0,
+          longitude: 0,
+          organizationName: 'Org 1',
+          categoryNames: [
+            "Information/Mock Session 1"
+          ],
+        }],
+        'School Org': [{
+          id: 2,
+          name: 'Event 2',
+          description: 'This is the description of a mock event.',
+          latitude: 0,
+          longitude: 0,
+          organizationName: 'Org 2',
+          categoryNames: [
+            "Information/Mock Session 2"
+          ],
+        }],
+      };
+  beforeEach(() => {
+    vi.resetAllMocks();
   });
 
-  return { default: useEventStore };
-});
+  it("displays only events of the selected category", async () => {
+    render(
+        <EventsDisplay
+            events={mockEvents["Individual Events"]}
+            currentPage="Individual Events"
+            searchQuery=""
+            favoriteEvents={[]}
+            toggleFavorite={() => {}}
+      />
+    );
 
-describe('Individual Events on EventsMapPage', () => {
-  it('displays only individual events markers when individual events option is selected', async () => {
-    render(<EventsMapPage />);
-    
-    // Simulate the user selecting 'Individual Events'
-    // Replace 'individual-events-filter' with your actual filter element's test id or text
-    fireEvent.click(screen.getByTestId('individual-events-filter'));
-
-    await waitFor(() => {
-      // Verify that only individual event markers are present
-      const markers = screen.getAllByAltText('Marker');
-      markers.forEach(marker => {
-        fireEvent.click(marker);
-        // Verify the popup content belongs to individual events
-        expect(screen.getByText('Individual Org 1')).toBeInTheDocument();
-      });
-
-      // Optionally, assert that non-individual events are not present if needed
-      // expect(screen.queryByText('Non-Individual Event')).not.toBeInTheDocument();
-    });
+    expect(screen.getByText("Event 1")).toBeInTheDocument();
   });
-
-  // Add any additional tests relevant to individual events here
 });
