@@ -6,7 +6,7 @@ import EventsDisplay from "../components/EventsDisplay";
 vi.mock("../stores/eventStore", () => ({
   __esModule: true,
   default: vi.fn(() => ({
-    categories: ["Individual Event 1", "Individual Event 2"],
+    categories: ["Information/Mock Session 1", "Information/Mock Session 2"],
   })),
 }));
 
@@ -42,14 +42,14 @@ describe("<EventsDisplay />", () => {
   it("displays only events of the selected category", async () => {
     render(
         <EventsDisplay
-            events={mockEvents["Individual Events"]}
-            currentPage="Individual Events"
+            events={mockEvents["School Org"]}
+            currentPage="School Org"
             searchQuery=""
             favoriteEvents={[]}
             toggleFavorite={() => {}}
       />
     );
 
-    expect(screen.getByText("Event 1")).toBeInTheDocument();
+    expect(screen.getByText("Event 2")).toBeInTheDocument();
   });
 });
