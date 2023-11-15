@@ -25,8 +25,8 @@ const DEFAULT_EVENT = {
     location: "",
     latitude: "",
     longitude: "",
-    startsOn: "",
-    endsOn: "",
+    startsOn: null, // or new Date() for current date
+    endsOn: null,   // or new Date() for current date
     image: "",
     categoryNames: "",
 };
@@ -113,6 +113,7 @@ const EventEditor = () => {
 
     return (
         <Card className="p-4 flex flex-col gap-4">
+            
             <Typography variant="h6">Create a New Event</Typography>
             <FormControl variant="outlined" className="mb-4">
                 <InputLabel>Event Type</InputLabel>
@@ -127,9 +128,11 @@ const EventEditor = () => {
                     )}
                 </Select>
             </FormControl>
+            
             <TextField
                 autoFocus
                 label="Name of Your Event"
+                data-testid="name"
                 variant="outlined"
                 value={newEvent.name}
                 onChange={event => setNewEvent({ ...newEvent, name: event.target.value })}
@@ -139,6 +142,7 @@ const EventEditor = () => {
             />
             <TextField
                 label="Description"
+                data-testid="description"
                 variant="outlined"
                 value={newEvent.description}
                 onChange={event => setNewEvent({ ...newEvent, description: event.target.value })}
@@ -151,22 +155,29 @@ const EventEditor = () => {
             />
             <TextField
                 label="Categories (comma-separated)"
+                data-testid="categories"
                 variant="outlined"
                 value={newEvent.categoryNames}
                 onChange={event => setNewEvent({ ...newEvent, categoryNames: event.target.value })}
             />
+            
             <Divider />
             <Typography variant="h6">Date and Time</Typography>
             <DateTimePicker
                 disablePast
+                
                 label="Starts On"
+                
                 value={newEvent.startsOn}
                 onChange={date => setNewEvent({ ...newEvent, startsOn: date })}
+                
                 required
+                renderInput={(params) => <TextField {...params} data-testid="startdate" />}
             />
             <DateTimePicker
                 minDate={newEvent.startsOn}
                 label="Ends On"
+                data-testid="end-date-picker"
                 value={newEvent.endsOn}
                 onChange={date => setNewEvent({ ...newEvent, endsOn: date })}
                 required

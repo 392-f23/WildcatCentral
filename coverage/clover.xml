@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1699552929852" clover="3.2.0">
-  <project timestamp="1699552929852" name="All files">
+<coverage generated="1699554971909" clover="3.2.0">
+  <project timestamp="1699554971909" name="All files">
     <metrics statements="627" coveredstatements="572" conditionals="82" coveredconditionals="55" methods="23" coveredmethods="18" elements="732" coveredelements="645" complexity="0" loc="627" ncloc="627" packages="2" files="9" classes="9"/>
     <package name="components">
       <metrics statements="433" coveredstatements="387" conditionals="57" coveredconditionals="37" methods="15" coveredmethods="10"/>
-      <file name="EventCard.jsx" path="/home/charles/Desktop/WildcatCentral/src/components/EventCard.jsx">
+      <file name="EventCard.jsx" path="/Users/clairepare/Dropbox/My Mac (MacBook-Pro.attlocal.net)/Documents/GitHub/WildcatCentral/src/components/EventCard.jsx">
         <metrics statements="114" coveredstatements="111" conditionals="7" coveredconditionals="4" methods="2" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -121,7 +121,7 @@
         <line num="113" count="1" type="stmt"/>
         <line num="114" count="1" type="stmt"/>
       </file>
-      <file name="EventsDisplay.jsx" path="/home/charles/Desktop/WildcatCentral/src/components/EventsDisplay.jsx">
+      <file name="EventsDisplay.jsx" path="/Users/clairepare/Dropbox/My Mac (MacBook-Pro.attlocal.net)/Documents/GitHub/WildcatCentral/src/components/EventsDisplay.jsx">
         <metrics statements="89" coveredstatements="78" conditionals="11" coveredconditionals="7" methods="5" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -213,7 +213,7 @@
         <line num="88" count="2" type="stmt"/>
         <line num="89" count="1" type="stmt"/>
       </file>
-      <file name="EventsDisplayPage.jsx" path="/home/charles/Desktop/WildcatCentral/src/components/EventsDisplayPage.jsx">
+      <file name="EventsDisplayPage.jsx" path="/Users/clairepare/Dropbox/My Mac (MacBook-Pro.attlocal.net)/Documents/GitHub/WildcatCentral/src/components/EventsDisplayPage.jsx">
         <metrics statements="99" coveredstatements="82" conditionals="22" coveredconditionals="13" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -315,7 +315,7 @@
         <line num="98" count="1" type="stmt"/>
         <line num="99" count="1" type="stmt"/>
       </file>
-      <file name="MapModal.jsx" path="/home/charles/Desktop/WildcatCentral/src/components/MapModal.jsx">
+      <file name="MapModal.jsx" path="/Users/clairepare/Dropbox/My Mac (MacBook-Pro.attlocal.net)/Documents/GitHub/WildcatCentral/src/components/MapModal.jsx">
         <metrics statements="90" coveredstatements="75" conditionals="15" coveredconditionals="11" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -408,7 +408,7 @@
         <line num="89" count="1" type="stmt"/>
         <line num="90" count="1" type="stmt"/>
       </file>
-      <file name="SpeedDial.jsx" path="/home/charles/Desktop/WildcatCentral/src/components/SpeedDial.jsx">
+      <file name="SpeedDial.jsx" path="/Users/clairepare/Dropbox/My Mac (MacBook-Pro.attlocal.net)/Documents/GitHub/WildcatCentral/src/components/SpeedDial.jsx">
         <metrics statements="41" coveredstatements="41" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -455,7 +455,7 @@
     </package>
     <package name="pages">
       <metrics statements="194" coveredstatements="185" conditionals="25" coveredconditionals="18" methods="8" coveredmethods="8"/>
-      <file name="ErrorPage.jsx" path="/home/charles/Desktop/WildcatCentral/src/pages/ErrorPage.jsx">
+      <file name="ErrorPage.jsx" path="/Users/clairepare/Dropbox/My Mac (MacBook-Pro.attlocal.net)/Documents/GitHub/WildcatCentral/src/pages/ErrorPage.jsx">
         <metrics statements="40" coveredstatements="40" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -498,7 +498,7 @@
         <line num="39" count="1" type="stmt"/>
         <line num="40" count="1" type="stmt"/>
       </file>
-      <file name="EventsMapPage.jsx" path="/home/charles/Desktop/WildcatCentral/src/pages/EventsMapPage.jsx">
+      <file name="EventsMapPage.jsx" path="/Users/clairepare/Dropbox/My Mac (MacBook-Pro.attlocal.net)/Documents/GitHub/WildcatCentral/src/pages/EventsMapPage.jsx">
         <metrics statements="132" coveredstatements="123" conditionals="21" coveredconditionals="14" methods="4" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -633,7 +633,7 @@
         <line num="131" count="1" type="stmt"/>
         <line num="132" count="1" type="stmt"/>
       </file>
-      <file name="IndexPage.jsx" path="/home/charles/Desktop/WildcatCentral/src/pages/IndexPage.jsx">
+      <file name="IndexPage.jsx" path="/Users/clairepare/Dropbox/My Mac (MacBook-Pro.attlocal.net)/Documents/GitHub/WildcatCentral/src/pages/IndexPage.jsx">
         <metrics statements="11" coveredstatements="11" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -647,7 +647,7 @@
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
       </file>
-      <file name="IndividualEventsPage.jsx" path="/home/charles/Desktop/WildcatCentral/src/pages/IndividualEventsPage.jsx">
+      <file name="IndividualEventsPage.jsx" path="/Users/clairepare/Dropbox/My Mac (MacBook-Pro.attlocal.net)/Documents/GitHub/WildcatCentral/src/pages/IndividualEventsPage.jsx">
         <metrics statements="11" coveredstatements="11" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>

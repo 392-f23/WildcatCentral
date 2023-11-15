@@ -2,6 +2,7 @@ import EventCard from '../components/EventCard';
 import React from 'react';
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import { LocalizationProvider, AdapterDateFns } from '@mui/x-date-pickers';
+import EventEditor from '../components/EventEditor'; // Adjust the import path
 
 import '@testing-library/jest-dom';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
@@ -11,6 +12,24 @@ import useEventStore from '../stores/eventStore';
 import { getDbData, writeToDb } from '../utilities/firebase';
 import NewEventPage from './NewEventPage';
 import { useNavigate } from 'react-router-dom';
+
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import TextField from '@mui/material/TextField';
+
+it('renders DateTimePicker correctly', () => {
+    render(
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DateTimePicker
+                label="Starts On"
+                value={new Date()} // Use a valid date
+                onChange={() => {}}
+                renderInput={(params) => <TextField {...params} data-testid="startdate" />}
+            />
+        </LocalizationProvider>
+    );
+
+    screen.debug(); // Check if DateTimePicker is rendered
+});
 
 // mock useNavigate (vi)
 vi.mock('react-router-dom', () => ({
@@ -32,6 +51,16 @@ vi.mock('@mui/x-date-pickers/DateTimePicker', () => ({
       ),
     };*/
   }));
+
+  vi.mock('./LocationPicker', () => ({
+    __esModule: true,
+    default: ({ onLocationChange }) => (
+      <button onClick={() => onLocationChange({ lat: 40.7128, lng: -74.0060 })}>
+        Mock Location Picker
+      </button>
+    ),
+  }));
+  
 
 vi.mock('../stores/eventStore', () => {
   const mockEvents = {
@@ -102,6 +131,20 @@ describe('NewEventPage', () => {
 
   it('should display a new event card with correct data after submission', async () => {
     render(<NewEventPage />);
+    screen.debug();
+    //render(<EventEditor />);
+
+    const eventName = screen.getByTestId('name');
+    const eventDesc = screen.getByTestId('description');
+    const eventCats = screen.getByTestId('categories');
+    screen.debug(eventName);
+    screen.debug(eventDesc);
+    screen.debug(eventCats);
+    const startDatePicker = screen.getByTestId('startdate');
+    const endDatePicker = screen.getByTestId('end-date-picker');
+    
+    screen.debug(startDatePicker);
+    screen.debug(endDatePicker);
 
     // Simulate user input
     //fireEvent.change(screen.getByLabelText('Name of Your Event'), { target: { value: 'Test Event' } });
@@ -115,16 +158,23 @@ describe('NewEventPage', () => {
     const endDate = new Date('2023-10-06T12:00:00');
 
     // find the DateTimePicker inputs
-    const startDateInput = screen.getByLabelText(/starts on/i);
+    //const startDateInput = screen.getByRole('textbox', { name: /starts on/i });
+    const startDateInput = screen.getByLabelText("Starts On");
     const endDateInput = screen.getByLabelText(/ends on/i);
 
     // Simulate setting the start and end dates
     fireEvent.change(startDateInput, { target: { value: startDate.toISOString() } });
     fireEvent.change(endDateInput, { target: { value: endDate.toISOString() } });
 
+    // Click the mock location picker button to simulate location selection
+    fireEvent.click(screen.getByText('Mock Location Picker'));
+
     // Add other fields similarly...
-    const locInput = screen.getByRole('textbox', { name: /location name/i });
-    fireEvent.change(locInput, { target: { value: 'Test Location' } });
+    /*const locInput = screen.getByRole('textbox', { name: /location name/i });
+    // Mock location selection by directly invoking the onLocationChange callback
+    const mockLocation = { lat: 40.7128, lng: -74.0060 }; // Mock latitude and longitude
+    const locationPicker = screen.getByTestId('location-picker'); // Adjust this to how you can select your LocationPicker component
+    locationPicker.onLocationChange(mockLocation);*/
     //fireEvent.change(screen.getByLabelText('Location Name'), { target: { value: 'Test Location' } });
 
     // Submit the form

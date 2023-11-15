@@ -66,7 +66,7 @@ vi.mock('../utilities/firebase', () => ({
   writeToDb: vi.fn(),
 }));
 
-describe('<IndexPage />', () => {
+describe('Index Page and Individual Events Page', () => {
   // reset the setFavoriteEvents mock after each test
   afterEach(() => {
     useEventStore().setFavoriteEvents.mockClear();
