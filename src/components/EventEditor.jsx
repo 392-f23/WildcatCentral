@@ -163,6 +163,7 @@ const EventEditor = () => {
             
             <Divider />
             <Typography variant="h6">Date and Time</Typography>
+            <div>
             <DateTimePicker
                 disablePast
                 
@@ -174,6 +175,7 @@ const EventEditor = () => {
                 required
                 renderInput={(params) => <TextField {...params} data-testid="startdate" />}
             />
+            </div>
             <DateTimePicker
                 minDate={newEvent.startsOn}
                 label="Ends On"
