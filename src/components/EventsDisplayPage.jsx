@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import EventsDisplay from "../components/EventsDisplay";
 import useEventStore from "../stores/eventStore";
 import { writeToDb, getDbData } from "../utilities/firebase";
-import AppSpeedDial from "../components/SpeedDial";
+import AppSpeedDial from "../components/SpeedDial-ChatGPT";
 
 const EventsDisplayPage = ({ selectedEventType }) => {
   const eventsList = useEventStore((state) => state.events);

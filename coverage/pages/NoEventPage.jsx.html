@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for pages/IndividualEventsPage.jsx</title>
+    <title>Code coverage report for pages/NoEventPage.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">pages</a> IndividualEventsPage.jsx</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">pages</a> NoEventPage.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -87,15 +87,15 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
 &nbsp;
-import EventsDisplayPage from '../components/EventsDisplayPage';
-&nbsp;
-const IndividualEventsPage = () =&gt; {
+const NoEventPage = ({ eventType }) =&gt; {
   return (
-    &lt;EventsDisplayPage selectedEventType="Individual Events" /&gt;
+    &lt;div className="text-center mt-8"&gt;
+      &lt;p className="text-lg font-bold"&gt;No events available for {eventType}.&lt;/p&gt;
+    &lt;/div&gt;
   );
 };
 &nbsp;
-export default IndividualEventsPage;
+export default NoEventPage;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
