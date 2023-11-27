@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody } from "@nextui-org/react";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-L.Icon.Default.imagePath = "images/";
+if (process.env.NODE_ENV !== 'test') {
+  L.Icon.Default.imagePath = "images/";
+}
 
 export const fetchCoordinatesFromName = async (locationName) => {
   const viewbox = "-91.5,36.8,-87.0,42.7";
@@ -39,7 +41,7 @@ const MapModal = ({
         }
       });
     }
-  }, [isOpen]); // <-- Listening to changes in isOpen
+  }, [isOpen]);
 
   const shouldDisplayMap =
     coordinates && coordinates.latitude && coordinates.longitude;
@@ -55,19 +57,21 @@ const MapModal = ({
         <ModalHeader>{locationName || "Location"}</ModalHeader>
         <ModalBody>
           {shouldDisplayMap ? (
-            <MapContainer
-              center={[coordinates.latitude, coordinates.longitude]}
-              zoom={15}
-              style={{ width: "100%", height: "300px" }}
-            >
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              />
-              <Marker
-                position={[coordinates.latitude, coordinates.longitude]}
-              />
-            </MapContainer>
+            <div data-testid="map-container">
+              <MapContainer
+                center={[coordinates.latitude, coordinates.longitude]}
+                zoom={15}
+                style={{ width: "100%", height: "300px" }}
+              >
+                <TileLayer
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                />
+                <Marker
+                  position={[coordinates.latitude, coordinates.longitude]}
+                />
+              </MapContainer>
+            </div>
           ) : (
             <div style={{ textAlign: "center", padding: "20px" }}>
               <p>

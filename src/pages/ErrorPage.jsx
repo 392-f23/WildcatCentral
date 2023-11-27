@@ -1,8 +1,11 @@
 import { useRouteError } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { Button } from "@nextui-org/button";
 
 const ErrorPage = () => {
     const error = useRouteError();
+    const navigate = useNavigate();
+
     console.error(error);
 
     return (
@@ -19,7 +22,7 @@ const ErrorPage = () => {
                 </p>
                 <Button
                     auto
-                    onClick={() => window.location.href = "/"}
+                    onClick={() => navigate('/')}
                     className="text-white bg-[#4e2a84] hover:bg-[#6d28d9]"
                 >
                     Return to Home
